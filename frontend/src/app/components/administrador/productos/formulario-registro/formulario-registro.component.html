@@ -1,0 +1,32 @@
+<form [formGroup]="productForm" (ngSubmit)="registrarForm()">
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" id="floatingPassword" placeholder="Marca" formControlName="brand">
+    <label for="floatingPassword">Marca</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" placeholder="Modelo" formControlName="model">
+    <label for="floatingPassword">Modelo</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" placeholder="Precio" formControlName="price">
+    <label for="floatingPassword">Precio</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" placeholder="Stock" formControlName="stock">
+    <label for="floatingPassword">Stock</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" placeholder="Descripcion" formControlName="description">
+    <label for="floatingPassword">Description</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="file" name="file" class="form-control" placeholder="imagen" #fileInput (change)="onFileUpload()">
+    <label for="file">Imagen</label>
+  </div>
+  <button [disabled]="!productForm.valid" class="btn btn-success">Registrar</button>
+</form>
+
+
+<div *ngFor="let alert of alerts">
+  <alert [type]="alert.type" [dismissOnTimeout]="alert.timeout" (onClosed)="onClosed(alert)">{{ alert.msg }}</alert>
+</div>

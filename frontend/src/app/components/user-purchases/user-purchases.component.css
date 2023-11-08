@@ -1,0 +1,63 @@
+body {
+  background-image: url(https://st1.uvnimg.com/dims4/default/e2133b7/2147483647/thumbnail/1024x576%3E/quality/75/?url=https%3A%2F%2Fuvn-brightspot.s3.amazonaws.com%2Fassets%2Fvixes%2Fbtg%2Ftech.batanga.com%2Ffiles%2FFondos-para-paginas-web.jpg);
+  background-size: cover;
+  background-attachment: scroll;
+}
+
+.container {
+  background-color: rgba(245, 222, 179, 0.592);
+  border-radius: 15px;
+  padding: 10px;
+  text-align: center;
+}
+
+.row {
+  display: block;
+  min-width: 100%;
+}
+
+
+.text {
+  color: rgb(141, 226, 177);
+  text-transform: uppercase;
+  margin-left: 5rem;
+  text-decoration: double;
+  min-width: 40%;
+  margin-top: 20%;
+}
+
+td img {
+  max-height: 100px;
+  width: auto;
+}
+
+.btn {
+  margin-top: 33px;
+  width: 100%;
+}
+
+td p {
+  margin-top: 40px;
+}
+
+.modal-body {
+  display: flex;
+}
+
+.modal-body-left {
+  flex: 1
+}
+
+.modal-body-right {
+  flex: 2
+}
+
+.card {
+  margin-bottom: 10px;
+  padding: 5px 0 5px 5px;
+  background-color: rgba(245, 222, 179, 0.486);
+}
+
+.card p {
+  font-size: 30px;
+}

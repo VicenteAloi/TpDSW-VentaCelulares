@@ -1,0 +1,23 @@
+<form [formGroup]="administratorForm" (ngSubmit)="registrarForm()">
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" id="floatingInput" placeholder="dni" formControlName="dni">
+    <label for="floatingInput">DNI</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" id="floatingPassword" placeholder="Marca" formControlName="name">
+    <label for="floatingPassword">Nombre</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="texto" class="form-control" placeholder="Modelo" formControlName="surname">
+    <label for="floatingPassword">Apellido</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="email" class="form-control" placeholder="Precio" formControlName="email">
+    <label for="floatingPassword">Email</label>
+  </div>
+  <div class="form-floating mb-3">
+    <input type="password" class="form-control" placeholder="Stock" formControlName="password">
+    <label for="floatingPassword">Password</label>
+  </div>
+  <button [disabled]="!administratorForm.valid" class="btn btn-success">Registrar</button>
+</form>

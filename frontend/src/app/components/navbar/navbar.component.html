@@ -1,0 +1,32 @@
+<header>
+  <div class="logo">
+    <a routerLink="/dashboard"><img width="100px" src="../../../assets/img/cuenta.png" alt="Logo"></a>
+  </div>
+  <nav>
+  </nav>
+
+  <div class="btn-group" dropdown>
+    <button type="button" class="btn btn-outline-danger">{{user.name}}</button>
+    <button id="button-split" type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split"
+      aria-controls="dropdown-split">
+      <span class="caret"></span>
+      <span class="sr-only visually-hidden">Split button!</span>
+    </button>
+    <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
+      <li role="menuitem"><a class="dropdown-item" (click)="userProfileModifier()">Modificar Perfil</a></li>
+      <li role="menuitem"><a class="dropdown-item" (click)="userPurchases()">Mis Compras</a></li>
+
+
+      <li class="divider dropdown-divider"></li>
+      <li role="menuitem"><a class="dropdown-item" (click)="logOut()">LogOut</a>
+      </li>
+    </ul>
+  </div>
+    <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+      class="carrito"><img src="../../../assets/img/carrito.png"></a>
+</header>
+<div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" class="cart_panel">
+  <div class="well well-lg card card-block card-header">
+    <app-cart></app-cart>
+  </div>
+</div>
