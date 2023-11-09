@@ -25,7 +25,7 @@ import { PublicationsListComponent } from './components/administrador/publicatio
 
 
 const routes: Routes = [
-  { path: '', redirectTo: 'login', pathMatch: 'full' },
+  { path: '', redirectTo: 'dashboard', pathMatch: 'full' },
   { path: 'login', component: LoginComponent },
   { path: 'signin', component: SignInComponent },
 
@@ -43,7 +43,7 @@ const routes: Routes = [
   { path: 'dashboard/userPurchases/:dni', component: UserPurchasesComponent },
   { path: 'dashboard/userProfile/:dni', component: UserProfileComponent },
   { path: 'dashboard/cart', component: CartComponent },
-  { path: '**', redirectTo: 'login', pathMatch: 'full' }
+  { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 
 ];
 

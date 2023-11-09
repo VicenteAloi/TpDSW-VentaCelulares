@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -13,15 +14,22 @@ export class NavbarComponent {
   user: any;
   id: any;
   dni: any;
+  login: any;
   isCollapsed = true;
   productList: product[] = [];
   productString: string = '';
-  constructor(private router: Router, private cartService: CartService, private productService: ProductService) {
+  search: any = '';
+  constructor(private router: Router, private cartService: CartService, private productService: ProductService, private toastr: ToastrService) {
 
     this.user = (localStorage.getItem('user'));
     this.user = JSON.parse(this.user);
-    this.id = this.user.id;
-    this.dni = this.user.dni
+    if (this.user) {
+      this.id = this.user.id;
+      this.dni = this.user.dni;
+      this.login = true
+    }
+
+
   }
 
 
@@ -29,18 +37,32 @@ export class NavbarComponent {
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.cartService.clearCart();
-    this.router.navigate(['/login']);
+    location.reload();
+  }
+  singIn() {
+    this.router.navigate(['/login'])
   }
 
   getProductByName(thisSearch: string) {
-    this.productService.getProductsByName(thisSearch).subscribe(data => {
-      this.productList = data;
-      localStorage.setItem('ProductList', JSON.stringify(this.productList))
-      localStorage.setItem('Search', thisSearch)
-      this.router.navigate([`dashboard/productsSearch`])
-      console.log(this.productList);
-    });
+    if (thisSearch != '') {
+      this.productService.getProductsByName(thisSearch).subscribe(data => {
+        this.productList = data;
+        localStorage.setItem('ProductList', JSON.stringify(this.productList))
+        localStorage.setItem('Search', thisSearch)
+        this.router.navigate([`dashboard/productsSearch`])
+        console.log(this.productList);
+
+        if (location.pathname == '/dashboard/productsSearch') {
+          location.reload();
+        }
+
+      })
+    } else {
+      this.toastr.error('Debe llenar el cuadro de busqueda');
+    }
+    ;
 
 
   }
