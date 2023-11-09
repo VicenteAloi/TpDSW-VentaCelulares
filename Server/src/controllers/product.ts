@@ -89,7 +89,6 @@ export const getOneProduct = async (request: Request, response: Response) => {
 }
 export const getProductsByName = async (req: Request, res: Response) => {
   const { name } = req.params;
-
   const productsByName = await Product.findAll({
     where: {
       brand: name

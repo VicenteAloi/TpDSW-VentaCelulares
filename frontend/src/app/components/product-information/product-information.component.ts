@@ -1,6 +1,7 @@
 import { LocalizedString } from '@angular/compiler';
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
+import { CookieService } from 'ngx-cookie-service';
 import { product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -19,7 +20,13 @@ export class ProductInformationComponent {
   productList: product[] = [];
   productString: any;
   search: any;
-  constructor(private productService: ProductService, private router: Router) {
+  constructor(private productService: ProductService, private router: Router, private activateRoute: ActivatedRoute) {
+
+    this.activateRoute.params.subscribe((param) => {
+      this.search = param;
+      console.log(this.search.name)
+    });
+
     this.getProductList();
   }
   findProduct(item: product) {
@@ -31,9 +38,10 @@ export class ProductInformationComponent {
   }
 
   async getProductList() {
-    this.productString = localStorage.getItem('ProductList');
-    this.productList = JSON.parse(this.productString);
-    this.search = localStorage.getItem('Search');
+    this.productService.getProductsByName(this.search.name).subscribe((data) => {
+      this.productList = data;
+      localStorage.setItem('Search', this.search.name)
+    });
   }
 
 }

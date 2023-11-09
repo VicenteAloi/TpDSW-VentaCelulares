@@ -4,6 +4,7 @@ import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
+import { __param } from 'tslib';
 
 @Component({
   selector: 'app-navbar',
@@ -45,20 +46,19 @@ export class NavbarComponent {
     this.router.navigate(['/login'])
   }
 
-  getProductByName(thisSearch: string) {
-    if (thisSearch != '') {
-      this.productService.getProductsByName(thisSearch).subscribe(data => {
-        this.productList = data;
-        localStorage.setItem('ProductList', JSON.stringify(this.productList))
-        localStorage.setItem('Search', thisSearch)
-        this.router.navigate([`dashboard/productsSearch`])
-        console.log(this.productList);
+  getProductByName(newSearch: any) {
+    if (newSearch != '') {
+      let oldSearch = localStorage.getItem('Search');
 
-        if (location.pathname == '/dashboard/productsSearch') {
+      if (location.pathname == `/dashboard/productsSearch/${oldSearch}`) {
+        this.router.navigate([`/dashboard/productsSearch/${newSearch}`])
+        setTimeout(() => {
           location.reload();
-        }
+        }, 500);
 
-      })
+      } else {
+        this.router.navigate([`/dashboard/productsSearch/${newSearch}`])
+      }
     } else {
       this.toastr.error('Debe llenar el cuadro de busqueda');
     }
