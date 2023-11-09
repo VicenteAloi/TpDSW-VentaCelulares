@@ -118,7 +118,13 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    }), CarouselModule.forRoot(), ModalModule.forRoot(), BsDropdownModule.forRoot(), RatingModule.forRoot(), CollapseModule.forRoot() // ToastrModule added
+    }),
+    CarouselModule.forRoot(),
+    ModalModule.forRoot(),
+    RatingModule.forRoot(),
+    CollapseModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot() // ToastrModule added
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }],

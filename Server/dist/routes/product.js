@@ -14,4 +14,5 @@ router.put('/:id', product_1.updateProduct);
 router.delete('/:id', product_1.deleteProduct);
 router.post('/', uploader.single('file'), product_1.newProduct);
 router.get('/:id', product_1.getOneProduct);
+router.get('/pbn/:name', product_1.getProductsByName);
 exports.default = router;

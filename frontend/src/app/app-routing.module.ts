@@ -34,15 +34,15 @@ const routes: Routes = [
   { path: 'admin/Productos', component: ProductosComponent },
   { path: 'admin/Clientes', component: AdministratorComponent },
   { path: 'admin/Ventas', component: VentasComponent },
-  {path:'admin/publications/:id',component: PublicationsListComponent},
+  { path: 'admin/publications/:id', component: PublicationsListComponent },
 
   { path: 'dashboard', component: DashboardComponent },
   { path: 'dashboard/helps', component: HelpsComponent },
-  { path: 'dashboard/product', component: ProductInformationComponent },
+  { path: 'dashboard/productsSearch', component: ProductInformationComponent },
   { path: 'dashboard/shopping/:id', component: ProductShoppingComponent },
   { path: 'dashboard/userPurchases/:dni', component: UserPurchasesComponent },
   { path: 'dashboard/userProfile/:dni', component: UserProfileComponent },
-  {path:'dashboard/cart',component: CartComponent},
+  { path: 'dashboard/cart', component: CartComponent },
   { path: '**', redirectTo: 'login', pathMatch: 'full' }
 
 ];

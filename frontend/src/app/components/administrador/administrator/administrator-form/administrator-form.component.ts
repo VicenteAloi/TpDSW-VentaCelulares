@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdministratorsService } from '../administrators.service';
 import { ToastrService } from 'ngx-toastr';
@@ -30,10 +30,10 @@ export class AdministratorFormComponent {
     }
     console.log(administrator);
     this.adminService.postAdministrator(administrator).subscribe({
-      complete: () => { 
+      complete: () => {
         this.adminService.retraiveAdministrator();
         this.toastr.success('Administrador cargado correctamente')
-       },
+      },
       error: (error) => this.toastr.error('Administrador duplicado, DNI o EMAIL duplicados')
     });
 

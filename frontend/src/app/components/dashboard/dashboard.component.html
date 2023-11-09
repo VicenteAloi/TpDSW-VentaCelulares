@@ -4,47 +4,24 @@
   <div class="container text-left" style="padding: 15px;">
 
     <div class="card" style="display: block; width: auto;padding: 15px">
-      <h2>Novedades {{usera?.name}}</h2>
+      <h2>Novedades</h2>
     </div>
-
-
-    <app-products-carousel></app-products-carousel><br><br>
-
-
+    <div style="margin-bottom: 10px;">
+      <app-products-carousel></app-products-carousel>
+    </div>
 
     <div class="card" style="display: block;width: auto;padding: 15px; ">
       <h2>Productos de Nuestra Seleccion</h2>
     </div>
 
 
-    <div class="card" *ngFor="let item of listProducts">
+    <div class="card" style="margin-right: 10px;" *ngFor="let item of listProducts">
       <img [src]=getUrl(item.image) class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{item.model}}</h5>
         <p class="card-text">{{item.brand}}
         </p>
-        <!-- <button class="btn btn-secondary" (click)="productInfo(template)" style="margin-right: 30%;">Ver Mas</button>
 
-        <ng-template #template>
-          <div class="modal-header">
-            <h4 class="modal-title pull-left">{{item.model}}</h4>
-            <button type="button" class="btn-close close pull-right" aria-label="Close" (click)="modalRef?.hide()">
-              <span aria-hidden="true" class="visually-hidden">&times;</span>
-            </button>
-          </div>
-          <div class="modal-body">
-
-            <div class="modal-body-right">
-              {{item.brand}}
-              <img src="{{item.image}}" alt="">
-
-            </div>
-            <div class="modal-body left">
-              {{item.description}}
-            </div>
-
-          </div>
-        </ng-template> -->
 
 
         <div class="card" style="padding: 10px; margin: 0; width: 253px; background-color: rgba(255, 255, 255, 0.453);">

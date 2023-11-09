@@ -2,8 +2,11 @@
   <div class="logo">
     <a routerLink="/dashboard"><img width="100px" src="../../../assets/img/cuenta.png" alt="Logo"></a>
   </div>
-  <nav>
-  </nav>
+
+  <div class="form-control" style="justify-content: center; text-align: center; width: auto;">
+    <input type="text" style="border-radius: 5px;" name="" id="" #thisSearch>
+    <button class="btn btn-group"><i class="fa fa-search" (click)="getProductByName(thisSearch.value)"></i></button>
+  </div>
 
   <div class="btn-group" dropdown>
     <button type="button" class="btn btn-outline-danger">{{user.name}}</button>
@@ -22,11 +25,35 @@
       </li>
     </ul>
   </div>
-    <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
-      class="carrito"><img src="../../../assets/img/carrito.png"></a>
+  <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+    class="carrito"><img src="../../../assets/img/carrito.png"></a>
 </header>
+
 <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" class="cart_panel">
   <div class="well well-lg card card-block card-header">
     <app-cart></app-cart>
+  </div>
+</div>
+
+
+
+
+<div class="card" style="margin-right: 10px;" *ngFor="let item of productList">
+  <!-- <img [src]=getUrl(item.image) class="card-img-top" alt="..."> -->
+  <div class="card-body">
+    <h5 class="card-title">{{item.model}}</h5>
+    <p class="card-text">{{item.brand}}
+    </p>
+
+
+
+    <div class="card" style="padding: 10px; margin: 0; width: 253px; background-color: rgba(255, 255, 255, 0.453);">
+      <!-- <button class="btn btn-success" (click)="findProduct(item)">Comprar</button> -->
+      <div style="display: inline-block; margin-left: 23%;">
+        Precio: ${{item.price}}
+      </div>
+    </div>
+
+
   </div>
 </div>

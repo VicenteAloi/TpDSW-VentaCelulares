@@ -1,7 +1,7 @@
 
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component, OnInit, TemplateRef } from '@angular/core';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { Component, OnInit } from '@angular/core';
+import { BsModalRef } from 'ngx-bootstrap/modal';
 import { ToastrService } from 'ngx-toastr';
 import { CustomerService } from 'src/app/services/customer.service';
 import { ErrorService } from 'src/app/services/error.service';
