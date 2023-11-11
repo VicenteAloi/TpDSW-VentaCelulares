@@ -8,7 +8,7 @@ import { environment } from '../environments/environments';
 export class PublicationsService {
   private myAppUrl: string;
   private myApiUrl: string;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/publications'
   }
@@ -17,5 +17,5 @@ export class PublicationsService {
     const idAdministrator = id
     return this.http.get(`${this.myAppUrl}${this.myApiUrl}/${idAdministrator}`)
   }
-  
+
 }

@@ -2,10 +2,15 @@
   <div class="logo">
     <a routerLink="/dashboard"><img width="100px" src="../../../assets/img/cuenta.png" alt="Logo"></a>
   </div>
-  <nav>
-  </nav>
 
-  <div class="btn-group" dropdown>
+  <div class="form-control" style="justify-content: center; text-align: center; width: auto;">
+    <input type="text" style="border-radius: 5px; border: 0; " placeholder="Ingrese Marca" #search>
+    <button class="btn btn-group" (click)="getProductByName(search.value)"><i class="fa fa-search"></i></button>
+  </div>
+
+  <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
+    class="carrito"><img src="../../../assets/img/carrito.png"></a>
+  <div class="btn-group" *ngIf="login" dropdown>
     <button type="button" class="btn btn-outline-danger">{{user.name}}</button>
     <button id="button-split" type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split"
       aria-controls="dropdown-split">
@@ -19,14 +24,21 @@
 
       <li class="divider dropdown-divider"></li>
       <li role="menuitem"><a class="dropdown-item" (click)="logOut()">LogOut</a>
+
       </li>
     </ul>
+
   </div>
-    <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
-      class="carrito"><img src="../../../assets/img/carrito.png"></a>
+
+
+  <button class="btn btn-outline-primary" type="submit" [disabled]="user" (click)="singIn()">LogIn</button>
+
+
 </header>
+
 <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" class="cart_panel">
   <div class="well well-lg card card-block card-header">
     <app-cart></app-cart>
   </div>
+
 </div>

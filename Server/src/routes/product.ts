@@ -1,5 +1,5 @@
 import { Router } from 'express'
-import { deleteProduct, getOneProduct, getProducts, updateProduct, newProduct } from '../controllers/product';
+import { deleteProduct, getOneProduct, getProducts, updateProduct, newProduct, getProductsByName } from '../controllers/product';
 import validateToken from './validate-token';
 
 import multer from "multer";
@@ -13,5 +13,6 @@ router.put('/:id', updateProduct);
 router.delete('/:id', deleteProduct);
 router.post('/', uploader.single('file'), newProduct);
 router.get('/:id', getOneProduct);
+router.get('/pbn/:name', getProductsByName);
 
 export default router;

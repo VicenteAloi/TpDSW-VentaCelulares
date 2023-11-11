@@ -11,6 +11,7 @@ import { product } from '../interfaces/product';
   providedIn: 'root'
 })
 export class ProductService {
+
   nullproduct: product = {
     id: 0,
     model: '',
@@ -19,7 +20,7 @@ export class ProductService {
     price: 0,
     stock: 0,
     image: '',
-    quantity:null,
+    quantity: null,
     createdAt: new Date()
   }
   private productInfo: BehaviorSubject<product> = new BehaviorSubject<product>(this.nullproduct);
@@ -44,6 +45,10 @@ export class ProductService {
 
   getProducts(): Observable<product[]> {
     return this.http.get<product[]>(`${this.myAppUrl}${this.myApiUrl}`)
+  }
+
+  getProductsByName(name: string): Observable<product[]> {
+    return this.http.get<product[]>(`${this.myAppUrl}${this.myApiUrl}/pbn/${name}`)
   }
 
 }

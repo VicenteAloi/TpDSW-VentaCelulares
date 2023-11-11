@@ -10,7 +10,7 @@ import { Parser } from '@angular/compiler';
 })
 export class NavBarComponent {
 
-    administrator: any
+  administrator: any
 
   constructor(private modalService: BsModalService,
     private router: Router) {
@@ -27,11 +27,12 @@ export class NavBarComponent {
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.modalRef?.hide()
-    this.router.navigate(['/login'])
+    this.router.navigate(['/dashboard'])
   }
 
-  openPublications(){
+  openPublications() {
     this.router.navigate([`admin/publications/${this.administrator.id}`])
   }
 }

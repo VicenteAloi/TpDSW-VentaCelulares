@@ -10,12 +10,12 @@ export class SalesService {
 
   private myAppUrl: string;
   private myApiUrl: string;
-  constructor(private http: HttpClient) { 
+  constructor(private http: HttpClient) {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/sales'
   }
 
-  postSell(cartSell: sales[]){
-    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`,cartSell)
+  postSell(cartSell: sales[]) {
+    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, cartSell)
   }
 }

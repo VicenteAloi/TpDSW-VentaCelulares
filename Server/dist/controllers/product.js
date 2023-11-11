@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOneProduct = exports.deleteProduct = exports.updateProduct = exports.newProduct = exports.getProducts = void 0;
+exports.getProductsByName = exports.getOneProduct = exports.deleteProduct = exports.updateProduct = exports.newProduct = exports.getProducts = void 0;
 const product_1 = require("../models/product");
 const publication_1 = require("../models/publication");
 const sales_1 = require("../models/sales");
@@ -106,3 +106,18 @@ const getOneProduct = (request, response) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.getOneProduct = getOneProduct;
+const getProductsByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = req.params;
+    const productsByName = yield product_1.Product.findAll({
+        where: {
+            brand: name
+        }
+    });
+    if (productsByName) {
+        return res.status(200).json(productsByName);
+    }
+    else {
+        return res.status(400).json({ msg: 'No se ha podido realizar la busqueda' });
+    }
+});
+exports.getProductsByName = getProductsByName;
