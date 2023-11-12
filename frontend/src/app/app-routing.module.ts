@@ -18,6 +18,7 @@ import { VentasComponent } from './components/administrador/ventas/ventas.compon
 import { UserPurchasesComponent } from './components/user-purchases/user-purchases.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PublicationsListComponent } from './components/administrador/publications-list/publications-list.component';
+import { AllProductsComponent } from './components/all-products/all-products.component';
 
 
 
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'admin/publications/:id', component: PublicationsListComponent },
 
   { path: 'dashboard', component: DashboardComponent },
+  { path: 'dashboard/allproducts', component: AllProductsComponent },
   { path: 'dashboard/helps', component: HelpsComponent },
   { path: 'dashboard/productsSearch/:name', component: ProductInformationComponent },
   { path: 'dashboard/shopping/:id', component: ProductShoppingComponent },

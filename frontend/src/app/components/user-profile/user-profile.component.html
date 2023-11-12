@@ -4,7 +4,8 @@
   <div class="card">
     <div class="container">
       <div class="container-right">
-        <button class="btn btn-outline-primary" (click)="showData=!showData">Mostrar Datos</button>
+        <button class="btn btn-outline-primary" *ngIf="!showData" (click)="showData=!showData">Mostrar Datos</button>
+        <button class="btn btn-outline-primary" *ngIf="showData" (click)="showData=!showData">Ocultar Datos</button>
         <div *ngIf="showData">
           <tr>
             <p class="tit"><b><i>DNI</i></b></p>
@@ -32,11 +33,16 @@
         </div>
       </div>
       <div *ngIf="showData" class="container-left">
-        <button class="btn btn-outline-success" id="pass" (click)="pass=!pass" [disabled]="mail">Modificar
-          Password</button>
-        <button class="btn btn-outline-success" (click)="mail=!mail" [disabled]="pass">Modificar Email</button>
-        <div *ngIf="pass">
-          <p>Modificando Contraseña</p>
+        <button class="btn btn-outline-success" (click)="data = !data">Modificar
+          Datos</button>
+
+        <div *ngIf="data">
+
+          <div class="form-floating mt-3 mb-3">
+            <input type="email" [(ngModel)]="newEmail" class="form-control" placeholder="Ingrese Mail">
+            <label>Mail</label>
+          </div>
+
           <div class="form-floating mt-3 mb-3">
             <input type="text" [(ngModel)]="newPassword" class="form-control" placeholder="Ingrese Mail">
             <label>Nueva Password</label>
@@ -45,16 +51,14 @@
             <input type="text" [(ngModel)]="newPassword2" class="form-control" placeholder="Ingrese Mail">
             <label>Nueva Password Nuevamente</label>
           </div>
+
+
         </div>
 
-        <div *ngIf="mail">
-          <p>Modificando Mail</p>
-          <div class="form-floating mt-3 mb-3">
-            <input type="email" [(ngModel)]="newEmail" class="form-control" placeholder="Ingrese Mail">
-            <label>Mail</label>
-          </div>
-        </div>
-        <button *ngIf="pass || mail" class="btn btn-success" id="mod" (click)="userModifier()">Modificar</button>
+
+
+
+        <button *ngIf="data" class="btn btn-success" id="mod" (click)="userModifier()">Modificar</button>
       </div>
 
     </div>

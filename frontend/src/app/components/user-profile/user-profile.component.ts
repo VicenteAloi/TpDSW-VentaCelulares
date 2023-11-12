@@ -15,8 +15,8 @@ import { UserService } from 'src/app/services/user.service';
   styleUrls: ['./user-profile.component.css']
 })
 export class UserProfileComponent implements OnInit {
-  showData: boolean = false;
-  pass: boolean = false;
+  showData: boolean = true;
+  data: boolean = false;
   mail: boolean = false;
   user: any;
   newEmail: any = "";
@@ -44,10 +44,7 @@ export class UserProfileComponent implements OnInit {
 
 
   userModifier() {
-
-    if (this.newPassword == '' && this.newPassword2 == '' && this.newEmail == '') {
-      this.toastr.error('Todos los campos son obligatorios')
-    } else {
+    if ((this.newPassword != '' && this.newPassword2 != '') || (this.newEmail != '')) {
       if (this.newEmail != "") {
         this.userM.email = this.newEmail;
         console.log(this.userM.email);
@@ -63,7 +60,7 @@ export class UserProfileComponent implements OnInit {
           }
         });
 
-      } else {
+      } if ((this.newPassword != '' && this.newPassword2 != '')) {
         if (this.newPassword === this.newPassword2) {
           this.userM.password = this.newPassword;
           console.log(this.userM.password);
@@ -77,11 +74,18 @@ export class UserProfileComponent implements OnInit {
           });
         } else {
           this.toastr.error(`Las contraseñas deben Coincidir`)
-        }
+        };
       }
+      console.log("llegue")
       this.newPassword = '';
       this.newPassword2 = '';
       this.newEmail = '';
+      setTimeout(() => {
+        location.reload();
+      }, 500);
+    } else {
+      this.toastr.error('Todos los campos son obligatorios')
+
     }
 
 

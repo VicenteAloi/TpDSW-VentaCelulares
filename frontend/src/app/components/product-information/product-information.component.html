@@ -3,7 +3,7 @@
 <div class="fondo">
   <div class="container success" *ngIf="productList.length >0">
     <div class="card" style="display: block;width: auto;padding: 15px; ">
-      <h2>Productos Encontrados con {{this.search}}</h2>
+      <h2>Productos Encontrados con "{{this.search.name}}"</h2>
     </div>
 
     <div class="card" style="margin-right: 10px;" *ngFor="let item of productList">

@@ -3,10 +3,13 @@
     <a routerLink="/dashboard"><img width="100px" src="../../../assets/img/cuenta.png" alt="Logo"></a>
   </div>
 
-  <div class="form-control" style="justify-content: center; text-align: center; width: auto;">
+  <div class="form-control" style="justify-content: center; text-align: center; width: auto;"
+    *ngIf="this.showSearchBar">
     <input type="text" style="border-radius: 5px; border: 0; " placeholder="Ingrese Marca" #search>
     <button class="btn btn-group" (click)="getProductByName(search.value)"><i class="fa fa-search"></i></button>
   </div>
+
+  <button class="btn btn-secondary" routerLink="/dashboard/allproducts">Productos</button>
 
   <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
     class="carrito"><img src="../../../assets/img/carrito.png"></a>

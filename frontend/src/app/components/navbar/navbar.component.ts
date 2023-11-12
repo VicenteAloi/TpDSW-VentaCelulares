@@ -20,8 +20,9 @@ export class NavbarComponent {
   productList: product[] = [];
   productString: string = '';
   search: any = '';
+  showSearchBar: boolean = false;
   constructor(private router: Router, private cartService: CartService, private productService: ProductService, private toastr: ToastrService) {
-
+    this.showSearch();
     this.user = (localStorage.getItem('user'));
     this.user = JSON.parse(this.user);
     if (this.user) {
@@ -72,5 +73,13 @@ export class NavbarComponent {
 
   userProfileModifier() {
     this.router.navigate([`dashboard/userProfile/:${this.dni}`])
+  }
+
+  showSearch() {
+    let search = localStorage.getItem('Search');
+    console.log(search)
+    if (location.pathname == '/dashboard/allproducts' || location.pathname == `/dashboard/productsSearch/${search}`) {
+      this.showSearchBar = true;
+    }
   }
 }

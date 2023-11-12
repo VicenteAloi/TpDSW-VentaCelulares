@@ -55,7 +55,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getThisUser();
   }
 
-  getUrl(image:string){
+  getUrl(image: string) {
     return `http://localhost:3001/static/${image}`
   }
 

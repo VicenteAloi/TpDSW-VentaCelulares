@@ -58,6 +58,7 @@ import { UserPurchasesComponent } from './components/user-purchases/user-purchas
 import { CartComponent } from './components/cart/cart.component';
 import { PublicationsListComponent } from './components/administrador/publications-list/publications-list.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AllProductsComponent } from './components/all-products/all-products.component';
 
 
 
@@ -102,6 +103,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     UserPurchasesComponent,
     CartComponent,
     PublicationsListComponent,
+    AllProductsComponent,
 
   ],
   imports: [
