@@ -12,12 +12,12 @@
     <div class="container2">
       <div>
         <h2><b><i>ESPECIFICACIONES</i></b></h2>
-        <p>DESCRIPCION {{newProduct?.description}}</p><br>
-        <p>PRECIO: ${{newProduct?.price}}</p><br>
-        <p>STOCK: {{newProduct?.stock}}</p><br>
-        <p maxlength="10">CREACION: {{newProduct?.createdAt}}</p>
+        <p>Descripción: {{newProduct?.description}}</p><br>
+        <p>Precio: ${{newProduct?.price}}</p><br>
+        <p>Stock: {{newProduct?.stock}}</p><br>
+        <p maxlength="10">Publicación: {{newProduct?.createdAt}}</p>
         <button [disabled]="newProduct?.stock==0" class="btn btn-outline-success" (click)="addCart(newProduct!,amount)">Agregar al Carrito</button>
-        <input type="number" [defaultValue]="1" min="0" max={{newProduct?.stock}} class="amount" #amount>
+        <input type="number" [defaultValue]="1" min="1" max={{newProduct?.stock}} class="amount" #amount>
       </div>
 
 

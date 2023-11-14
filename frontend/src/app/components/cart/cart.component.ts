@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { sales } from 'src/app/interfaces/sales';
 import { SalesService } from '../../services/sales.service';
@@ -12,6 +12,7 @@ import { Router } from '@angular/router';
 })
 export class CartComponent {
   productsCart: any[] = [];
+  
   constructor(private cartService: CartService, private sellService: SalesService, private alertService: ToastrService, private router: Router) { }
   ngOnInit() {
     this.cartService.products.subscribe((products) => {

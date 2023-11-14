@@ -13,8 +13,12 @@ import { FilterPipe } from './components/administrador/ventas/pipes/filter.pipe'
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import {MatBadgeModule} from '@angular/material/badge';
+import {MatMenuModule} from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import {MatDividerModule} from '@angular/material/divider';
+import {MatSortModule} from '@angular/material/sort';
+import {MatTableModule} from '@angular/material/table';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -124,7 +128,13 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     RatingModule.forRoot(),
     CollapseModule.forRoot(),
     BrowserAnimationsModule,
-    BsDropdownModule.forRoot() // ToastrModule added
+    BsDropdownModule.forRoot(), // ToastrModule added
+    MatBadgeModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatSortModule,
+    MatTableModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }],
