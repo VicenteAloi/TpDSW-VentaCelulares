@@ -77,7 +77,6 @@ export class NavbarComponent {
 
   showSearch() {
     let search = localStorage.getItem('Search');
-    console.log(search)
     if (location.pathname == '/dashboard/allproducts' || location.pathname == `/dashboard/productsSearch/${search}`) {
       this.showSearchBar = true;
     }

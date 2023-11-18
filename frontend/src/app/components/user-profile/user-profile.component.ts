@@ -82,7 +82,7 @@ export class UserProfileComponent implements OnInit {
       this.newEmail = '';
       setTimeout(() => {
         location.reload();
-      }, 500);
+      }, 1000);
     } else {
       this.toastr.error('Todos los campos son obligatorios')
 

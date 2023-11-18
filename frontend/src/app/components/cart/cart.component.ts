@@ -1,9 +1,10 @@
-import { Component } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { sales } from 'src/app/interfaces/sales';
 import { SalesService } from '../../services/sales.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
+import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-cart',
@@ -12,7 +13,9 @@ import { Router } from '@angular/router';
 })
 export class CartComponent {
   productsCart: any[] = [];
-  constructor(private cartService: CartService, private sellService: SalesService, private alertService: ToastrService, private router: Router) { }
+  modalRef?: BsModalRef;
+  isCollapsed = true;
+  constructor(private cartService: CartService, private modalService: BsModalService, private sellService: SalesService, private alertService: ToastrService, private router: Router) { }
   ngOnInit() {
     this.cartService.products.subscribe((products) => {
       this.productsCart = products
@@ -53,11 +56,16 @@ export class CartComponent {
       }
 
     }
+    this.modalRef?.hide()
 
 
   }
 
   getUrl(image: string) {
     return `http://localhost:3001/static/${image}`
+  }
+
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 }
