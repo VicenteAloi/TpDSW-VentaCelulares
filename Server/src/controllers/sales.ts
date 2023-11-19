@@ -1,7 +1,10 @@
 import { Request, Response, request } from "express";
 import connection from '../db/connection';
 import { Sales } from "../models/sales";
-import sequelize from "sequelize/types/sequelize";
+import sequelize, { where } from "sequelize/types/sequelize";
+import { Product } from "../models/product";
+import { QueryTypes } from "sequelize";
+import { toDefaultValue } from "sequelize/types/utils";
 
 export const getSales = async (request: Request, response: Response) => {
   let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct';
@@ -38,6 +41,8 @@ export const postSell = async (request:Request,response:Response)=>{
   console.log(body);
   for(let j = 0 ; j < body.length;j++){
     try {
+      const produc = await Product.findOne({where:{id : body[j].idProduct}})
+      await Product.update({ stock: produc?.dataValues.stock  - body[j].quantity }, { where: { id: body[j].idProduct } });
       await Sales.create({
         idCustomer: body[j].idCustomer,
         idProduct: body[j].idProduct,

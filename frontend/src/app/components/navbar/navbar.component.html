@@ -32,6 +32,7 @@
 
 <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" class="cart_panel">
   <div class="well ">
-    <app-cart></app-cart>
+    <app-cart (eventPay)="pay"></app-cart>
+    <!-- <app-payment *ngIf="pay"></app-payment> -->
   </div>
 </div>

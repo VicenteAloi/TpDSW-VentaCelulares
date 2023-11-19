@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject } from 'rxjs';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -16,7 +17,16 @@ export class CartService {
   }
 
   addProduct(product: any){
-    this.cartProducts.push(product);
+    const index = this.cartProducts.findIndex(element=> element.id == product.id);
+    console.log(index);
+    if(index == -1){
+      this.cartProducts.push(product);
+    }else{
+      let update = this.cartProducts[index];
+      update.quantity = Number(update.quantity) + Number(product.quantity);
+      this.cartProducts.splice(index,1);
+      this.cartProducts.push(update);
+    }
     this.productsSubject.next(this.cartProducts);
     this.countSubject.next(this.cartProducts.length);
   }

@@ -15,6 +15,7 @@ import { __param } from 'tslib';
 })
 export class NavbarComponent implements OnInit{
   countProduct =0;
+  pay:boolean = false;
   user: any;
   id: any;
   dni: any;

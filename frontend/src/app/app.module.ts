@@ -19,6 +19,9 @@ import { MatIconModule } from '@angular/material/icon';
 import {MatDividerModule} from '@angular/material/divider';
 import {MatSortModule} from '@angular/material/sort';
 import {MatTableModule} from '@angular/material/table';
+import {MatInputModule} from '@angular/material/input';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatStepperModule} from '@angular/material/stepper';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -62,6 +65,7 @@ import { UserPurchasesComponent } from './components/user-purchases/user-purchas
 import { CartComponent } from './components/cart/cart.component';
 import { PublicationsListComponent } from './components/administrador/publications-list/publications-list.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { PaymentComponent } from './components/payment/payment.component';
 
 
 
@@ -106,6 +110,7 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     UserPurchasesComponent,
     CartComponent,
     PublicationsListComponent,
+    PaymentComponent,
 
   ],
   imports: [
@@ -134,7 +139,10 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     MatIconModule,
     MatDividerModule,
     MatSortModule,
-    MatTableModule
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatStepperModule
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }],

@@ -15,6 +15,7 @@ Object.defineProperty(exports, "__esModule", { value: true });
 exports.postSell = exports.getOneSales = exports.getSales = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 const sales_1 = require("../models/sales");
+const product_1 = require("../models/product");
 const getSales = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct';
     let salesList;
@@ -52,6 +53,8 @@ const postSell = (request, response) => __awaiter(void 0, void 0, void 0, functi
     console.log(body);
     for (let j = 0; j < body.length; j++) {
         try {
+            const produc = yield product_1.Product.findOne({ where: { id: body[j].idProduct } });
+            yield product_1.Product.update({ stock: (produc === null || produc === void 0 ? void 0 : produc.dataValues.stock) - body[j].quantity }, { where: { id: body[j].idProduct } });
             yield sales_1.Sales.create({
                 idCustomer: body[j].idCustomer,
                 idProduct: body[j].idProduct,

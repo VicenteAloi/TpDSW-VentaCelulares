@@ -11,13 +11,15 @@ import { Router } from '@angular/router';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  buttonDisable: boolean = false;
   productsCart: any[] = [];
-  
   constructor(private cartService: CartService, private sellService: SalesService, private alertService: ToastrService, private router: Router) { }
   ngOnInit() {
     this.cartService.products.subscribe((products) => {
       this.productsCart = products
     });
+    // let index = this.productsCart.findIndex(elem => elem.stock < elem.quantity);
+    // if(index != -1){this.buttonDisable = true}
   }
 
   deleteProduct(id: number) {
@@ -36,10 +38,16 @@ export class CartComponent {
           quantity: Number(this.productsCart[i].quantity),
           idShipping: null
         };
-        //para verificar si cargo bien el objeto venta
-        cartSell.push(newSale);
+        if(this.productsCart[i].stock >= Number(this.productsCart[i].quantity)){
+          cartSell.push(newSale);
+        }else{
+          this.alertService.info(`El producto: ${this.productsCart[i].brand}--${this.productsCart[i].model} no cumple con el stock para esta compra`).onAction
+        }
       }
-
+      if(cartSell.length>0){
+        if(cartSell.length < this.productsCart.length){
+          this.alertService.info('Hay productos que no cumplian con el stock, por lo tanto no concretaron la compra').onAction
+        }
       this.sellService.postSell(cartSell).subscribe({
         complete: (() => {
           this.cartService.clearCart();
@@ -47,8 +55,11 @@ export class CartComponent {
         }),
         error: (() => console.log('Ocurrio un error'))
       });
+    } else{
+      this.alertService.error('Ningun producto cumple con el stock').onAction;
+    }
     } else {
-      let confirmar = confirm('Antes de Comprar debe Loguearse. Quiere que lo redireccionemos al LogIn?');
+      let confirmar = this.alertService.info('Antes de Comprar debe Loguearse. Quiere que lo redireccionemos al LogIn?').onAction;
       if (confirmar) {
         this.router.navigate(['/login'])
       }
