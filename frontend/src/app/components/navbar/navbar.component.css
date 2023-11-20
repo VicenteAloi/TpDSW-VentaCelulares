@@ -7,7 +7,7 @@
 }
 
 header {
-  background-color: #3c404b;
+  background-color: #e9e9e9f8;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -52,21 +52,25 @@ header .nav-links li {
 
 .carrito {
   margin-left: 20rem;
-  margin-top: 0;
+  
 }
 
-.cart_panel {
+.cart_panel{
   position: relative;
   background-color: rgb(255, 255, 255);
-  overflow-y: auto;
+  overflow-y: auto;  
+  width: 100%;
 }
+
 
 header .carrito {
   cursor: pointer;
 }
 
+
+
 header .carrito img {
-  height: 50px;
+  height: 40px;
   width: auto;
   transition: all 0.3s;
 }
@@ -74,6 +78,20 @@ header .carrito img {
 header .carrito img:hover {
   transform: scale(1.2, 1.2);
 }
+
+header .login {
+  cursor: pointer;
+}
+
+header .login img{
+  height: 40px;
+  width: auto;
+  transition: all 0.3s;
+}
+header .login img:hover {
+  transform: scale(1.2, 1.2);
+}
+
 
 .fondo {
   background-image: url(https://wallpapercave.com/wp/wp6994803.jpg);

@@ -3,45 +3,38 @@
     <a routerLink="/dashboard"><img width="100px" src="../../../assets/img/cuenta.png" alt="Logo"></a>
   </div>
 
-  <div class="form-control" style="justify-content: center; text-align: center; width: auto;"
-    *ngIf="this.showSearchBar">
-    <input type="text" style="border-radius: 5px; border: 0; " placeholder="Ingrese Marca" #search>
+  <div class="form-control" style="justify-content: center; text-align: center; width: auto;">
+    <input type="text" class="search" style="border-radius: 5px; border: 0; " placeholder="Ingrese Marca" #search>
     <button class="btn btn-group" (click)="getProductByName(search.value)"><i class="fa fa-search"></i></button>
   </div>
-
-  <button class="btn btn-secondary" routerLink="/dashboard/allproducts">Productos</button>
-
-  <a (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic"
-    class="carrito"><img src="../../../assets/img/carrito.png"></a>
+  <mat-icon [matBadge]="countProduct" matBadgeColor="warn" (click)="isCollapsed = !isCollapsed"
+    [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic" class="carrito"><img
+      src="../../../assets/img/carrito.png"></mat-icon>
   <div class="btn-group" *ngIf="login" dropdown>
-    <button type="button" class="btn btn-outline-danger">{{user.name}}</button>
-    <button id="button-split" type="button" dropdownToggle class="btn btn-danger dropdown-toggle dropdown-toggle-split"
-      aria-controls="dropdown-split">
-      <span class="caret"></span>
-      <span class="sr-only visually-hidden">Split button!</span>
-    </button>
-    <ul id="dropdown-split" *dropdownMenu class="dropdown-menu" role="menu" aria-labelledby="button-split">
-      <li role="menuitem"><a class="dropdown-item" (click)="userProfileModifier()">Modificar Perfil</a></li>
-      <li role="menuitem"><a class="dropdown-item" (click)="userPurchases()">Mis Compras</a></li>
-
-
-      <li class="divider dropdown-divider"></li>
-      <li role="menuitem"><a class="dropdown-item" (click)="logOut()">LogOut</a>
-
-      </li>
-    </ul>
-
+    <button mat-button [matMenuTriggerFor]="menu" class="btn"
+      aria-label="Example icon-button with a menu">{{user.name}}</button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item (click)="userProfileModifier()">
+        <span>Modificar Perfil</span>
+      </button>
+      <button mat-menu-item (click)="userPurchases()">
+        <span>Mis Compras</span>
+      </button>
+      <button mat-menu-item (click)="logOut()">
+        <span>Salir</span>
+      </button>
+    </mat-menu>
   </div>
 
 
-  <button class="btn btn-outline-primary" type="submit" [disabled]="user" (click)="singIn()">LogIn</button>
+  <a *ngIf="!login" class="login" type="submit" (click)="singIn()"><img
+      src="../../../assets/img/esquema-del-boton-de-flecha-cuadrada-de-inicio-de-sesion.png"></a>
 
 
 </header>
 
 <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" class="cart_panel">
-  <div class="well well-lg card card-block card-header">
+  <div class="well ">
     <app-cart></app-cart>
   </div>
-
 </div>

@@ -3,6 +3,7 @@ import { ProductoService } from '../producto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { product } from 'src/app/interfaces/product';
 
+
 @Component({
   selector: 'app-produc-list',
   templateUrl: './produc-list.component.html',

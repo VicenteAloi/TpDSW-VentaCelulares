@@ -55,8 +55,7 @@ const postSell = (request, response) => __awaiter(void 0, void 0, void 0, functi
             yield sales_1.Sales.create({
                 idCustomer: body[j].idCustomer,
                 idProduct: body[j].idProduct,
-                quantity: body[j].quantity,
-                idShipping: body[j].idShipping
+                quantity: body[j].quantity
             });
         }
         catch (error) {

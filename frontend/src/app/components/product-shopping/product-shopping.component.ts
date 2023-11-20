@@ -17,7 +17,8 @@ export class ProductShoppingComponent implements OnInit {
   newProduct: product | undefined;
   product: any;
   listOfProducts: product[] = [];
-
+  amount: any = 0;
+  stock: any;
 
   constructor(private _productService: ProductService,
     private activateRouter: ActivatedRoute, private cartService: CartService) {
@@ -31,10 +32,14 @@ export class ProductShoppingComponent implements OnInit {
     });
 
     this.activateRouter.params.subscribe((param) => {
-      this.product = param
-
+      this.product = param;
       this.findProduct();
-      console.log(this.product)
+      setTimeout(() => {
+        console.log("Producto", this.product)
+        console.log("Producto", this.newProduct),
+          this.stock = this.newProduct?.stock
+      }, 500);
+
     })
   }
 
@@ -49,22 +54,34 @@ export class ProductShoppingComponent implements OnInit {
     })
   }
 
-  addCart(newProduct:product,amount:HTMLInputElement){
+  addCart(newProduct: product, amount: HTMLInputElement) {
     const product = {
-        id: newProduct.id, //PK
-        model: newProduct.model,
-        brand: newProduct.brand,
-        description: newProduct.description,
-        price: newProduct.price,
-        stock: newProduct.stock,
-        image: newProduct.image,
-        quantity: amount.value
+      id: newProduct.id, //PK
+      model: newProduct.model,
+      brand: newProduct.brand,
+      description: newProduct.description,
+      price: newProduct.price,
+      stock: newProduct.stock,
+      image: newProduct.image,
+      quantity: amount
     }
     this.cartService.addProduct(product);
   }
 
-  getUrl(image:string|undefined){
+  getUrl(image: string | undefined) {
     return `http://localhost:3001/static/${image}`
+  }
+
+  increaseAmount() {
+    if (this.amount < this.stock) {
+      this.amount++
+    }
+  }
+
+  decreaseAmount() {
+    if (this.amount > 0) {
+      this.amount--
+    }
   }
 }
 

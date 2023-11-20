@@ -1,7 +1,6 @@
-import { LocalizedString } from '@angular/compiler';
+
 import { Component } from '@angular/core';
-import { ActivatedRoute, Route, Router } from '@angular/router';
-import { CookieService } from 'ngx-cookie-service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 

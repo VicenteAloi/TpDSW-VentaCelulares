@@ -1,6 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { SalesService } from '../sales.service';
 import { sales } from 'src/app/interfaces/sales';
+
 @Component({
   selector: 'app-sales-list',
   templateUrl: './sales-list.component.html',

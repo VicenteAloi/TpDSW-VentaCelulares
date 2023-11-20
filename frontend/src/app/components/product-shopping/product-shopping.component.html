@@ -12,19 +12,42 @@
     <div class="container2">
       <div>
         <h2><b><i>ESPECIFICACIONES</i></b></h2>
-        <p>DESCRIPCION {{newProduct?.description}}</p><br>
-        <p>PRECIO: ${{newProduct?.price}}</p><br>
-        <p>STOCK: {{newProduct?.stock}}</p><br>
-        <p maxlength="10">CREACION: {{newProduct?.createdAt}}</p>
-        <button [disabled]="newProduct?.stock==0" class="btn btn-outline-success" (click)="addCart(newProduct!,amount)">Agregar al Carrito</button>
-        <input type="number" [defaultValue]="1" min="0" max={{newProduct?.stock}} class="amount" #amount>
+        <p>Descripción: {{newProduct?.description}}</p><br>
+        <p>Precio: ${{newProduct?.price}}</p><br>
+        <p>Stock: {{newProduct?.stock}}</p><br>
+        <p maxlength="10">Publicación: {{newProduct?.createdAt}}</p>
+        <button [disabled]="newProduct?.stock==0 || amount==0" class="btn btn-outline-success" style="margin: 0;"
+          (click)="addCart(newProduct!,amount)">Agregar al Carrito</button>
+
+        <button class="btn btn-success" style="margin-left: 10px;" (click)="increaseAmount()">Up</button>
+        <p style="display: inline;">{{amount}}</p>
+        <button class="btn btn-danger" style="margin-left: 2px;" (click)="decreaseAmount()">down</button>
+
+
+
+
+
+
+
       </div>
-
-
     </div>
   </div>
+
   <footer>
     <app-footer></app-footer>
   </footer>
+
+  <div class="container">
+    <div class=" row">
+      <div class="col-md-4">
+        <div class="card">
+          <div class="card-body">
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 
 </body>

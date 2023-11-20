@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import { MatMenuTrigger } from '@angular/material/menu';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
 import { product } from 'src/app/interfaces/product';
@@ -6,12 +7,14 @@ import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
 import { __param } from 'tslib';
 
+
 @Component({
   selector: 'app-navbar',
   templateUrl: './navbar.component.html',
   styleUrls: ['./navbar.component.css']
 })
-export class NavbarComponent {
+export class NavbarComponent implements OnInit {
+  countProduct = 0;
   user: any;
   id: any;
   dni: any;
@@ -30,11 +33,13 @@ export class NavbarComponent {
       this.dni = this.user.dni;
       this.login = true
     }
-
-
   }
 
-
+  ngOnInit(): void {
+    this.cartService.countProd.subscribe((data) => {
+      this.countProduct = data
+    });
+  }
 
 
   logOut() {

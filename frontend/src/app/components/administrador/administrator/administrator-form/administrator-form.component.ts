@@ -14,7 +14,7 @@ export class AdministratorFormComponent {
     dni: new FormControl(0, Validators.required),
     name: new FormControl("", Validators.required),
     surname: new FormControl("", Validators.required),
-    email: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", Validators.required),
   });
   constructor(private adminService: AdministratorsService, private toastr: ToastrService) { }
@@ -34,7 +34,7 @@ export class AdministratorFormComponent {
         this.adminService.retraiveAdministrator();
         this.toastr.success('Administrador cargado correctamente')
       },
-      error: (error) => this.toastr.error('Administrador duplicado, DNI o EMAIL duplicados')
+      error: (error) => this.toastr.error('DNI o EMAIL ya existentes')
     });
 
   }

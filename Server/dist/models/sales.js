@@ -23,7 +23,7 @@ exports.Sales = connection_1.default.define('sales', {
     },
     idShipping: {
         type: sequelize_1.DataTypes.INTEGER,
-        allowNull: true
+        allowNull: true,
     }
 });
 exports.Sales.belongsTo(user_1.User, { foreignKey: 'idCustomer' });
