@@ -54,8 +54,8 @@ export class ProductShoppingComponent implements OnInit {
     })
   }
 
-  addCart(newProduct: product, amount: HTMLInputElement) {
-    const product = {
+  addCart(newProduct: product, amount: any) {
+    const product: product = {
       id: newProduct.id, //PK
       model: newProduct.model,
       brand: newProduct.brand,
@@ -63,7 +63,8 @@ export class ProductShoppingComponent implements OnInit {
       price: newProduct.price,
       stock: newProduct.stock,
       image: newProduct.image,
-      quantity: amount
+      quantity: Number(amount),
+      createdAt: newProduct.createdAt
     }
     this.cartService.addProduct(product);
   }
