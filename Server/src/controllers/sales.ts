@@ -6,7 +6,7 @@ import { Product } from "../models/product";
 import { QueryTypes } from "sequelize";
 import { toDefaultValue } from "sequelize/types/utils";
 
-export const getSales = async (request: Request, response: Response) => {
+export const getSales = (request: Request, response: Response) => {
   let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct';
   let salesList: any;
   connection.query(queryTable).then((values) => {
@@ -33,7 +33,7 @@ export const getOneSales = (request:Request,response:Response)=>{
       response.status(404).send({msg: 'No hay ventas registradas'})
     }
   })
-} 
+}
 
 export const postSell = async (request:Request,response:Response)=>{
   // recibimos un arreglo de ventas, que hace referencia a una compra por cada producto del carrito

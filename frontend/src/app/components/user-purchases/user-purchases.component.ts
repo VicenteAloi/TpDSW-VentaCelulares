@@ -14,6 +14,7 @@ export class UserPurchasesComponent implements OnInit {
   user: any;
   listOfSales: any;
   modalRef?: BsModalRef;
+  panelOpenState = false;
   constructor(private customerService: CustomerService,
     private modalService: BsModalService) {
     this.user = localStorage.getItem('user');

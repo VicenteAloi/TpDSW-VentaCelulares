@@ -22,7 +22,7 @@ const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, func
     const { body, file } = request;
     console.log('body:', body);
     console.log('file:', file);
-    //AHORA TRANSFORMAMOS LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT (Con postman anda pero con el Front no ( consulta)) --> Lo que me da a entender que la API esta bien pero del Front mando mal la info
+    //AHORA validamos LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT 
     if (file != undefined) {
         const url = file.filename;
         //MANDAMOS A LA BD TODO LISTO

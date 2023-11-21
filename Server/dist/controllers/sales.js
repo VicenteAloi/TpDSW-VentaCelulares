@@ -16,7 +16,7 @@ exports.postSell = exports.getOneSales = exports.getSales = void 0;
 const connection_1 = __importDefault(require("../db/connection"));
 const sales_1 = require("../models/sales");
 const product_1 = require("../models/product");
-const getSales = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+const getSales = (request, response) => {
     let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct';
     let salesList;
     connection_1.default.query(queryTable).then((values) => {
@@ -28,7 +28,7 @@ const getSales = (request, response) => __awaiter(void 0, void 0, void 0, functi
             response.status(404).send({ msg: 'No hay ventas registradas' });
         }
     });
-});
+};
 exports.getSales = getSales;
 const getOneSales = (request, response) => {
     let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.dni = sales.dniCustomer INNER JOIN products ON products.id = sales.idProduct WHERE users.dni = ?';

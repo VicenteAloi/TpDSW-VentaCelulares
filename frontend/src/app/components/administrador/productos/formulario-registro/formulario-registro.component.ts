@@ -2,6 +2,8 @@ import { Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductoService } from '../producto.service';
 import { AlertComponent } from 'ngx-bootstrap/alert';
+import { publications } from 'src/app/interfaces/publications';
+
 
 
 @Component({
@@ -13,6 +15,7 @@ export class FormularioRegistroComponent implements OnInit{
 
   //PARTE DEL ALERT
   alerts: any[] = [];
+ 
 
   //FORMULARIO Y USO DE SERVICE
   productForm:FormGroup;
@@ -26,7 +29,7 @@ export class FormularioRegistroComponent implements OnInit{
       description:['', [Validators.required]],
       file:[null, [Validators.required]]
 
-    })
+    });
   }
 
   ngOnInit(): void {
@@ -54,8 +57,6 @@ export class FormularioRegistroComponent implements OnInit{
     formData.append('price',this.productForm.get('price')?.value);
     formData.append('stock',this.productForm.get('stock')?.value);
     formData.append('file',this.productForm.get('file')?.value);
-    formData.append('date_register',(`${date.getFullYear()}${date.getMonth()}${date.getDay()}`));
-    formData.append('date_updated',(`${date.getFullYear()}${date.getMonth()}${date.getDay()}`));
     this.productoS.postProducto(formData).subscribe({
       complete: ()=> {
         this.productoS.retraiveProducts();
