@@ -6,13 +6,13 @@ import { User } from '../models/user';
 export const getAdministrators = async (request: Request, response: Response) => {
   //let queryTable = "SELECT * FROM users WHERE users.isAdmin = true";
   let administratorsList: any[] = [];
-  try{
-    administratorsList = await User.findAll({where:{isAdmin:true}})
-  }finally{
-    if(administratorsList.length === 0){
-      return response.status(400).send({msg:'No hay administradores cargados'})
+  try {
+    administratorsList = await User.findAll({ where: { isAdmin: true } })
+  } finally {
+    if (administratorsList.length === 0) {
+      return response.status(400).send({ msg: 'No hay administradores cargados' })
     }
-    else{
+    else {
       return response.status(200).json(administratorsList)
     }
   }

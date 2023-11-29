@@ -9,7 +9,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getPublications = void 0;
+exports.newPublication = exports.getPublications = void 0;
 const publication_1 = require("../models/publication");
 const getPublications = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { idAdmin } = request.params;
@@ -27,3 +27,8 @@ const getPublications = (request, response) => __awaiter(void 0, void 0, void 0,
     }
 });
 exports.getPublications = getPublications;
+const newPublication = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const { idAdmin } = request.params; //recibimos la id del usuario por ruta(parametro)
+    const { body } = request; //recibimos el producto
+});
+exports.newPublication = newPublication;

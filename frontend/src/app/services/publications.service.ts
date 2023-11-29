@@ -1,6 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { environment } from '../environments/environments';
+import { publications } from '../interfaces/publications';
 
 @Injectable({
   providedIn: 'root'
@@ -17,5 +18,4 @@ export class PublicationsService {
     const idAdministrator = id
     return this.http.get(`${this.myAppUrl}${this.myApiUrl}/${idAdministrator}`)
   }
-
 }

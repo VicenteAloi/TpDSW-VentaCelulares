@@ -9,9 +9,9 @@ const uploader = multer({ storage })
 const router = Router();
 
 router.get('/', getProducts);
-router.put('/:id', updateProduct);
-router.delete('/:id', deleteProduct);
-router.post('/', uploader.single('file'), newProduct);
+router.put('/:id', validateToken, updateProduct);
+router.delete('/:id', validateToken, deleteProduct);
+router.post('/', validateToken, uploader.single('file'), newProduct);
 router.get('/:id', getOneProduct);
 router.get('/pbn/:name', getProductsByName);
 

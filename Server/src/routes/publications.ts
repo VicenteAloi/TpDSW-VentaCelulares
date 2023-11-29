@@ -1,11 +1,12 @@
 import { Router } from "express";
-import { getPublications } from "../controllers/publications";
+import { getPublications, newPublication } from "../controllers/publications";
 
 
 
 const router = Router();
 
 router.get('/:id', getPublications);
+router.post('/:id',newPublication);
 
 
 

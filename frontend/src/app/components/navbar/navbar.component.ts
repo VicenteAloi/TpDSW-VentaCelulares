@@ -47,7 +47,13 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.cartService.clearCart();
-    location.reload();
+    console.log(location.pathname)
+    if (location.pathname == '/dashboard') {
+      location.reload();
+    } else {
+      this.router.navigate(['/dashboard']);
+    }
+
   }
   singIn() {
     this.router.navigate(['/login'])

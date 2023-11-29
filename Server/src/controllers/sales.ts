@@ -20,7 +20,7 @@ export const getSales = (request: Request, response: Response) => {
 }
 
 export const getOneSales = (request: Request, response: Response) => {
-  let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.dni = sales.dniCustomer INNER JOIN products ON products.id = sales.idProduct WHERE users.dni = ?';
+  let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct WHERE users.dni = ?';
   let salesList: any[] = [];
   connection.query({
     query: queryTable,

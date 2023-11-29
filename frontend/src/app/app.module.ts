@@ -22,6 +22,8 @@ import { MatTableModule } from '@angular/material/table';
 import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
+import { MatExpansionModule } from '@angular/material/expansion';
+
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -144,7 +146,9 @@ import { PaymentComponent } from './components/payment/payment.component';
     MatTableModule,
     MatInputModule,
     MatFormFieldModule,
-    MatStepperModule
+    MatStepperModule,
+    MatExpansionModule
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }],
