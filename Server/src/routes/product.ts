@@ -8,11 +8,11 @@ const uploader = multer({ storage })
 
 const router = Router();
 
-router.get('/', getProducts);
-router.put('/:id', validateToken, updateProduct);
-router.delete('/:id', validateToken, deleteProduct);
-router.post('/', validateToken, uploader.single('file'), newProduct);
-router.get('/:id', getOneProduct);
-router.get('/pbn/:name', getProductsByName);
+router.get('/', getProducts)//SEQUELIZE;
+router.put('/:id', validateToken, updateProduct)//SEQUELIZE;
+router.delete('/:id', validateToken, deleteProduct)//SEQUELIZE;
+router.post('/', validateToken, uploader.single('file'), newProduct)//SEQUELIZE;
+router.get('/:id', getOneProduct)//SEQUELIZE;
+router.get('/pbn/:name', getProductsByName)//SEQUELIZE;
 
 export default router;

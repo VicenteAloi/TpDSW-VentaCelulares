@@ -20,8 +20,8 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getProducts = getProducts;
 const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { body, file } = request;
-    console.log('body:', body);
-    console.log('file:', file);
+    // console.log('body:', body);
+    // console.log('file:', file);
     //AHORA validamos LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT 
     if (file != undefined) {
         const url = file.filename;
@@ -62,10 +62,6 @@ const updateProduct = (request, response) => __awaiter(void 0, void 0, void 0, f
 exports.updateProduct = updateProduct;
 const deleteProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = request.params;
-    // let querySalesProduct = "DELETE FROM sales WHERE idProduct = ?";
-    // let queryPublicationsProduct = "DELETE FROM publications WHERE idProduct = ?";
-    // let querySearch = "DELETE FROM products WHERE id = ?";
-    //ver FK en sales y publications antes de eliminar el producto
     try {
         try {
             yield sales_1.Sales.destroy({ where: { idProduct: id } });

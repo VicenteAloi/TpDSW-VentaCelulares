@@ -6,11 +6,11 @@ import validateToken from "./validate-token";
 
 const router = Router();
 
-router.get('/', getCustomers);
-router.delete('/:dni', validateToken, deleteCustomer);
-router.patch('/:dni', validateToken, updateCustomer);
-router.post('/login', loginUser);
-router.get('/:id', validateToken, getSalesUser);
+router.get('/', getCustomers)//SEQUELIZE;
+router.delete('/:dni', validateToken, deleteCustomer)//SEQUELIZE;
+router.patch('/:dni', validateToken, updateCustomer)//SEQUELIZE;
+router.post('/login', loginUser)//SEQUELIZE;
+router.get('/:id', validateToken, getSalesUser)//QUERY;
 
 
 

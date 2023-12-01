@@ -13,39 +13,34 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.postSell = exports.getOneSales = exports.getSales = void 0;
-const connection_1 = __importDefault(require("../db/connection"));
 const sales_1 = require("../models/sales");
 const product_1 = require("../models/product");
-const getSales = (request, response) => {
-    let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct';
-    let salesList;
-    connection_1.default.query(queryTable).then((values) => {
-        if (values[0].length > 0) {
-            salesList = values[0]; //porque esta promesa devuelve un arreglo, donde la primera posicion contiene otro arreglo de la data
-            response.status(200).json(salesList);
-        }
-        else {
-            response.status(404).send({ msg: 'No hay ventas registradas' });
-        }
-    });
-};
+const connection_1 = __importDefault(require("../db/connection"));
+const getSales = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const { QueryTypes } = require('sequelize');
+    const saleList = yield connection_1.default.query("SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct", { type: QueryTypes.SELECT });
+    if (saleList.length > 0) {
+        response.status(200).json(saleList);
+    }
+    else {
+        response.status(404).send({ msg: 'No hay ventas registradas' });
+    }
+});
 exports.getSales = getSales;
-const getOneSales = (request, response) => {
-    let queryTable = 'SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct WHERE users.dni = ?';
-    let salesList = [];
-    connection_1.default.query({
-        query: queryTable,
-        values: [request.params.dniCustomer]
-    }).then((values) => {
-        if (values[0].length > 0) {
-            salesList = values[0]; //porque esta promesa devuelve un arreglo, donde la primera posicion contiene otro arreglo de la data
-            response.status(200).json(salesList);
-        }
-        else {
-            response.status(404).send({ msg: 'No hay ventas registradas' });
-        }
-    });
-};
+const getOneSales = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    // Extraemos el dni de la ruta
+    const dni = request.params.dniCustomer;
+    // Extraemos metadatos Querytypes y definimos la Query con Querytypes.SELECT
+    const { QueryTypes } = require('sequelize');
+    const saleList = yield connection_1.default.query(`SELECT * FROM sales INNER JOIN users ON users.id = sales.idCustomer INNER JOIN products ON products.id = sales.idProduct WHERE users.dni = ${dni}`, { type: QueryTypes.SELECT });
+    //Validamos si saleList contiene valores
+    if (saleList.length > 0) {
+        response.status(200).json(saleList);
+    }
+    else {
+        response.status(404).send({ msg: 'No hay ventas registradas al cliente' });
+    }
+});
 exports.getOneSales = getOneSales;
 const postSell = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     // recibimos un arreglo de ventas, que hace referencia a una compra por cada producto del carrito
