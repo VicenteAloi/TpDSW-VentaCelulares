@@ -2,13 +2,16 @@ body {
   background-image: url(https://wallpapercave.com/wp/wp6994803.jpg);
   background-size: cover;
   background-attachment: scroll;
+  padding-top: 5px;
 }
+
 
 .container {
   background-color: rgba(240, 237, 233, 0.592);
   border-radius: 15px;
-  padding: 10px;
   text-align: center;
+  border: solid white 2px;
+  padding: 15px;
 }
 
 .row {

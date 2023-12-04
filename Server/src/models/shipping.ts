@@ -20,5 +20,4 @@ export const Shipping = sequelize.define('shippings', {
     type: DataTypes.STRING,
     allowNull: false
   }
-
 })

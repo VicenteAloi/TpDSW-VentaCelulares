@@ -20,14 +20,15 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getProducts = getProducts;
 const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { body, file } = request;
-    console.log('body:', body);
-    console.log('file:', file);
+    const idAdmin = parseInt(request.params.idAdmin);
+    // console.log('body:', body);
+    // console.log('file:', file);
     //AHORA validamos LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT 
     if (file != undefined) {
         const url = file.filename;
         //MANDAMOS A LA BD TODO LISTO
         try {
-            yield product_1.Product.create({
+            const product = yield product_1.Product.create({
                 model: body.model,
                 brand: body.brand,
                 description: body.description,
@@ -35,7 +36,11 @@ const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, func
                 price: Number(body.price),
                 stock: Number(body.stock)
             });
-            return response.status(200).send({ msg: 'Producto cargado correctamente' });
+            const publication = yield publication_1.Publication.create({
+                idProduct: product.dataValues.id,
+                idAdministrator: idAdmin
+            });
+            return response.status(200).send({ msg: "Producto Creado Correctamente", body: product, publication });
         }
         catch (error) {
             return response.status(400).json({ msg: 'Ocurrio un Error', error });
@@ -62,10 +67,6 @@ const updateProduct = (request, response) => __awaiter(void 0, void 0, void 0, f
 exports.updateProduct = updateProduct;
 const deleteProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = request.params;
-    // let querySalesProduct = "DELETE FROM sales WHERE idProduct = ?";
-    // let queryPublicationsProduct = "DELETE FROM publications WHERE idProduct = ?";
-    // let querySearch = "DELETE FROM products WHERE id = ?";
-    //ver FK en sales y publications antes de eliminar el producto
     try {
         try {
             yield sales_1.Sales.destroy({ where: { idProduct: id } });

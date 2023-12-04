@@ -47,7 +47,7 @@ class Server {
         this.app.use('/api/customers', customers_1.default);
         this.app.use('/api/Administrators', administrator_1.default);
         this.app.use('/api/sales', sales_1.default);
-        this.app.use('/api/publications/:idCustomer', publications_1.default);
+        this.app.use('/api/publications', publications_1.default);
         this.app.use('/api/payment', payment_1.default);
     }
     midlewares() {

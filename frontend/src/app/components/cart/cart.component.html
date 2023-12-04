@@ -29,7 +29,8 @@
     </tbody>
   </table>
 
-  <button class="btn btn-outline-success" *ngIf="productsCart.length > 0" (click)="chargeCart()" (click)="openModal(template)">
+  <button class="btn btn-outline-success" *ngIf="productsCart.length > 0" (click)="chargeCart()"
+    (click)="openModal(template)">
     Comprar Todo &nbsp;&nbsp;&nbsp;&nbsp;&nbsp; <img src="../../../assets/img/aplicacion-wallet-pass.png">
   </button>
 </header>
@@ -40,7 +41,7 @@
       <span aria-hidden="true" class="visually-hidden">&times;</span>
     </button>
   </div>
-  <div class="modal-body" >
+  <div class="modal-body">
     <app-payment [cartSell]="cartSales" (objectCharge)="doSell($event)"></app-payment>
   </div>
 </ng-template>

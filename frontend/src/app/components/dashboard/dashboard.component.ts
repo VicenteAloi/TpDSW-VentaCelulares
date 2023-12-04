@@ -31,15 +31,24 @@ export class DashboardComponent implements OnInit {
   ngOnInit(): void {
     this.getProducts();
     this.getUser();
-
     this.usera = localStorage.getItem('user');
     this.usera = (JSON.parse(this.usera))
   }
 
   getProducts() {
+    let list: product[] = []
     this.productService.getProducts().subscribe(data => {
-      this.listProducts = data;
-    })
+      list = data;
+      console.log(list) // Muestra todos los productos
+    });
+    setTimeout(() => {
+      for (let i = 0; i < list.length; i++) {
+        if (list[i].stock > 0) {
+          this.listProducts.push(list[i]) //Agregar el producto con stock >0 al arreglo
+        }
+      }
+    }, 500);
+
   }
 
   findProduct(item: product) {
@@ -55,7 +64,7 @@ export class DashboardComponent implements OnInit {
     this.userService.getThisUser();
   }
 
-  getUrl(image:string){
+  getUrl(image: string) {
     return `http://localhost:3001/static/${image}`
   }
 

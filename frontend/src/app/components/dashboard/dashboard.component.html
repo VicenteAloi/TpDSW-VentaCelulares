@@ -16,6 +16,7 @@
 
 
     <div class="card" style="margin-right: 10px;" *ngFor="let item of listProducts">
+
       <img [src]=getUrl(item.image) class="card-img-top" alt="...">
       <div class="card-body">
         <h5 class="card-title">{{item.model}}</h5>
@@ -33,6 +34,7 @@
 
 
       </div>
+
     </div>
 
   </div>

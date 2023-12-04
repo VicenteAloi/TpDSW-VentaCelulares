@@ -14,8 +14,7 @@ export class PublicationsService {
     this.myApiUrl = 'api/publications'
   }
 
-  getPublications(id: number) {
-    const idAdministrator = id
+  getPublications(idAdministrator: number) {
     return this.http.get(`${this.myAppUrl}${this.myApiUrl}/${idAdministrator}`)
   }
 }
