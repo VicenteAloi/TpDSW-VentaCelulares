@@ -18,11 +18,11 @@ export class ProductoService {
     this.myAppUrl = environment.endpoint;
     this.myApiUrl = 'api/Products'
   }
-  postProducto(formDataProduct: FormData) {
+  postProducto(formDataProduct: FormData, idAdmin: number) {
     //ACA MANDAMOS MEDIANTE UN POST A LA API
     console.log(formDataProduct)
     //return this.http.post('http://localhost:3001/api/Products', formDataProduct);
-    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, formDataProduct);
+    return this.http.post(`${this.myAppUrl}${this.myApiUrl}/${idAdmin}`, formDataProduct);
   }
 
   retraiveProducts() {

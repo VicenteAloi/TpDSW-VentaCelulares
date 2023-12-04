@@ -10,6 +10,7 @@ export const getProducts = async (req: Request, res: Response) => {
 
 export const newProduct = async (request: Request, response: Response) => {
   const { body, file } = request;
+  const idAdmin = parseInt(request.params.idAdmin);
   // console.log('body:', body);
   // console.log('file:', file);
   //AHORA validamos LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT 
@@ -17,7 +18,7 @@ export const newProduct = async (request: Request, response: Response) => {
     const url = file.filename;
     //MANDAMOS A LA BD TODO LISTO
     try {
-      await Product.create({
+      const product = await Product.create({
         model: body.model,
         brand: body.brand,
         description: body.description,
@@ -25,12 +26,19 @@ export const newProduct = async (request: Request, response: Response) => {
         price: Number(body.price),
         stock: Number(body.stock)
       });
-      return response.status(200).send({ msg: 'Producto cargado correctamente' })
+      const publication = await Publication.create({
+        idProduct: product.dataValues.id,
+        idAdministrator: idAdmin
+      })
+      return response.status(200).send({ msg: "Producto Creado Correctamente", body: product, publication })
     } catch (error) {
       return response.status(400).json({ msg: 'Ocurrio un Error', error });
     }
   }
-};
+}
+  ;
+
+
 
 export const updateProduct = async (request: Request, response: Response) => {
   const { id } = request.params;

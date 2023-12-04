@@ -20,6 +20,7 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getProducts = getProducts;
 const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { body, file } = request;
+    const idAdmin = parseInt(request.params.idAdmin);
     // console.log('body:', body);
     // console.log('file:', file);
     //AHORA validamos LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT 
@@ -27,7 +28,7 @@ const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, func
         const url = file.filename;
         //MANDAMOS A LA BD TODO LISTO
         try {
-            yield product_1.Product.create({
+            const product = yield product_1.Product.create({
                 model: body.model,
                 brand: body.brand,
                 description: body.description,
@@ -35,7 +36,11 @@ const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, func
                 price: Number(body.price),
                 stock: Number(body.stock)
             });
-            return response.status(200).send({ msg: 'Producto cargado correctamente' });
+            const publication = yield publication_1.Publication.create({
+                idProduct: product.dataValues.id,
+                idAdministrator: idAdmin
+            });
+            return response.status(200).send({ msg: "Producto Creado Correctamente", body: product, publication });
         }
         catch (error) {
             return response.status(400).json({ msg: 'Ocurrio un Error', error });

@@ -8,16 +8,18 @@ import { PublicationsService } from 'src/app/services/publications.service';
   styleUrls: ['./publications-list.component.css']
 })
 export class PublicationsListComponent {
-  publicationsList:any=[];
-  idAdmin:any;
-  constructor(private publicationService: PublicationsService, private activateRouter: ActivatedRoute){
+  publicationsList: any = [];
+  Admin: any = localStorage.getItem("user")
+  constructor(private publicationService: PublicationsService, private activateRouter: ActivatedRoute) {
   }
   ngOnInit(): void {
-    this.activateRouter.params.subscribe((param) => {
-      this.idAdmin = param
-      this.publicationService.getPublications(this.idAdmin).subscribe((value)=>{
+    this.Admin = JSON.parse(this.Admin)
+    this.publicationService.getPublications(this.Admin.id).subscribe((value) => {
       this.publicationsList = value
     });
-    })
+  }
+
+  getUrl(image: string) {
+    return `http://localhost:3001/static/${image}`
   }
 }

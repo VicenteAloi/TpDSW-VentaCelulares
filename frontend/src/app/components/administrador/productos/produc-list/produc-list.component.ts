@@ -9,24 +9,28 @@ import { product } from 'src/app/interfaces/product';
   templateUrl: './produc-list.component.html',
   styleUrls: ['./produc-list.component.scss']
 })
-export class ProducListComponent implements OnInit{
-  productosRegistrados:product[]=[];
-  product:any;
-  constructor(private productoS: ProductoService,private modalService: BsModalService){}
+export class ProducListComponent implements OnInit {
+  productosRegistrados: product[] = [];
+  product: any;
+  constructor(private productoS: ProductoService, private modalService: BsModalService) { }
 
-  ngOnInit():void {
-    this.productoS.retraiveProducts().subscribe(respuesta=>this.productosRegistrados=respuesta);
+  ngOnInit(): void {
+    this.productoS.retraiveProducts().subscribe(respuesta => this.productosRegistrados = respuesta);
   }
 
-  deleteProducto(indice:number){
-    const produ = this.productosRegistrados[indice];
-    this.productoS.deleteProducto(produ).subscribe({
-      complete:() =>{ this.productoS.retraiveProducts()},
-      error: (error)=>console.log(error)});
+  deleteProducto(indice: number) {
+    if (confirm("Seguro que Desea Eliminar el Producto?")) {
+      const produ = this.productosRegistrados[indice];
+      this.productoS.deleteProducto(produ).subscribe({
+        complete: () => { this.productoS.retraiveProducts() },
+        error: (error) => console.log(error)
+      });
+    }
+
   };
 
   modalRef?: BsModalRef;
-  openModal(template: TemplateRef<any>, index:number) {
+  openModal(template: TemplateRef<any>, index: number) {
     this.product = this.productosRegistrados[index];
     this.modalRef = this.modalService.show(template);
   }

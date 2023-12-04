@@ -11,7 +11,7 @@ const router = Router();
 router.get('/', getProducts)//SEQUELIZE;
 router.put('/:id', validateToken, updateProduct)//SEQUELIZE;
 router.delete('/:id', validateToken, deleteProduct)//SEQUELIZE;
-router.post('/', validateToken, uploader.single('file'), newProduct)//SEQUELIZE;
+router.post('/:idAdmin', validateToken, uploader.single('file'), newProduct)//SEQUELIZE;
 router.get('/:id', getOneProduct)//SEQUELIZE;
 router.get('/pbn/:name', getProductsByName)//SEQUELIZE;
 
