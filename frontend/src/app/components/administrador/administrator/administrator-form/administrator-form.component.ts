@@ -19,7 +19,7 @@ export class AdministratorFormComponent {
   });
   constructor(private adminService: AdministratorsService, private toastr: ToastrService) { }
 
-  registrarForm() {
+  registrarForm(){
     const administrator: any = {
       'dni': this.administratorForm.controls.dni.value,
       'name': this.administratorForm.controls.name.value,
@@ -34,7 +34,7 @@ export class AdministratorFormComponent {
         this.adminService.retraiveAdministrator();
         this.toastr.success('Administrador cargado correctamente')
       },
-      error: (error) => this.toastr.error('DNI o EMAIL ya existentes')
+      error: () => this.toastr.error('DNI o EMAIL ya existentes')
     });
 
   }

@@ -23,7 +23,7 @@ import {MatInputModule} from '@angular/material/input';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatStepperModule} from '@angular/material/stepper';
 import {MatExpansionModule} from '@angular/material/expansion';
-
+import {MatProgressBarModule} from '@angular/material/progress-bar';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -76,6 +76,7 @@ import { PaymentComponent } from './components/payment/payment.component';
 
 
 
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -112,8 +113,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     UserPurchasesComponent,
     CartComponent,
     PublicationsListComponent,
-    PaymentComponent,
-
+    PaymentComponent
   ],
   imports: [
     BrowserModule,
@@ -145,7 +145,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     MatInputModule,
     MatFormFieldModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
 
   ],
   providers: [

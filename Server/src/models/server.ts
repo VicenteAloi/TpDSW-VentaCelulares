@@ -6,6 +6,7 @@ import routesCustomers from '../routes/customers';
 import routesAdministrator from '../routes/administrator';
 import routesSales from '../routes/sales';
 import routesPublications from '../routes/publications';
+import routesPayment from '../routes/payment';
 import { Product } from './product';
 import { User } from './user';
 import { Domicile } from './domicile';
@@ -39,6 +40,7 @@ class Server {
     this.app.use('/api/Administrators', routesAdministrator);
     this.app.use('/api/sales', routesSales);
     this.app.use('/api/publications/:idCustomer',routesPublications);
+    this.app.use('/api/payment',routesPayment);
   }
 
   midlewares() {
