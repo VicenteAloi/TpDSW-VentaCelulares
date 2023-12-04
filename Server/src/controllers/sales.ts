@@ -31,6 +31,7 @@ export const getOneSales = async (request: Request, response: Response) => {
   }
 }
 
+
 export const postSell = async (request: Request, response: Response) => {
   // recibimos un arreglo de ventas, que hace referencia a una compra por cada producto del carrito
   const { body } = request;

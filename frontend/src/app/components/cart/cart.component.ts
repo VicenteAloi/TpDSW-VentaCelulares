@@ -1,10 +1,11 @@
-import { Component, TemplateRef } from '@angular/core';
+import { Component, TemplateRef, Output } from '@angular/core';
 import { CartService } from 'src/app/services/cart.service';
 import { sales } from 'src/app/interfaces/sales';
 import { SalesService } from '../../services/sales.service';
 import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
-import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
+import { PaymentService } from 'src/app/services/payment.service';
+import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 
 @Component({
   selector: 'app-cart',
@@ -12,24 +13,26 @@ import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  hideModal = false;
+  modalRef?: BsModalRef;
+  responsePayment: any;
   buttonDisable: boolean = false;
   productsCart: any[] = [];
-  modalRef?: BsModalRef;
-  isCollapsed = true;
-  constructor(private cartService: CartService, private modalService: BsModalService, private sellService: SalesService, private alertService: ToastrService, private router: Router) { }
+  cartSales: sales[] = [];
+
+  constructor(private modalService: BsModalService, private cartService: CartService, private sellService: SalesService, private alertService: ToastrService, private router: Router, private pay: PaymentService) {
+
+  }
   ngOnInit() {
     this.cartService.products.subscribe((products) => {
       this.productsCart = products
     });
-    // let index = this.productsCart.findIndex(elem => elem.stock < elem.quantity);
-    // if(index != -1){this.buttonDisable = true}
   }
 
   deleteProduct(id: number) {
     this.cartService.deleteProduct(id);
   }
-
-  doSell() {
+  async chargeCart() {
     let user = localStorage.getItem('user');
     if (user) {
       const userParse = JSON.parse(user!);
@@ -47,37 +50,45 @@ export class CartComponent {
           this.alertService.info(`El producto: ${this.productsCart[i].brand}--${this.productsCart[i].model} no cumple con el stock para esta compra`).onAction
         }
       }
-      if (cartSell.length > 0) {
-        if (cartSell.length < this.productsCart.length) {
-          this.alertService.info('Hay productos que no cumplian con el stock, por lo tanto no concretaron la compra').onAction
+      this.cartSales = cartSell;
+    } else {
+      let confirmar = this.alertService.info('Antes de Comprar debe Loguearse. Quiere que lo redireccionemos al LogIn?').onAction;
+      if (confirmar) {
+        this.router.navigate(['/login'])
+      }
+    }
+  }
+
+  doSell($event: any) {
+    if ($event.status == "succeeded") {
+      this.modalRef?.hide(); //para que el modal se cierre solo
+      if (this.cartSales.length > 0) {
+        if (this.cartSales.length < this.productsCart.length) {
+          this.alertService.info('Hay productos que no cumplen con el stock, por lo tanto no concretarán la compra').onAction
+
         }
-        this.sellService.postSell(cartSell).subscribe({
+        this.sellService.postSell(this.cartSales).subscribe({
           complete: (() => {
             this.cartService.clearCart();
             this.alertService.success('Compra registrada con exito!')
           }),
           error: (() => console.log('Ocurrio un error'))
         });
-      } else {
+      }
+      else {
         this.alertService.error('Ningun producto cumple con el stock').onAction;
       }
     } else {
-      let confirmar = this.alertService.info('Antes de Comprar debe Loguearse').onAction;
-      if (confirmar) {
-        this.router.navigate(['/login'])
-      }
-
+      this.alertService.error('Hubo un inconveniente con la transacción del pago').onAction;
     }
-    this.modalRef?.hide()
+  }
 
-
+  openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
   }
 
   getUrl(image: string) {
     return `http://localhost:3001/static/${image}`
   }
 
-  openModal(template: TemplateRef<any>) {
-    this.modalRef = this.modalService.show(template);
-  }
 }

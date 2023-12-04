@@ -23,7 +23,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -69,6 +69,7 @@ import { PublicationsListComponent } from './components/administrador/publicatio
 import { CollapseModule } from 'ngx-bootstrap/collapse';
 import { AllProductsComponent } from './components/all-products/all-products.component';
 import { PaymentComponent } from './components/payment/payment.component';
+
 
 
 
@@ -147,7 +148,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     MatInputModule,
     MatFormFieldModule,
     MatStepperModule,
-    MatExpansionModule
+    MatExpansionModule,
+    MatProgressBarModule
 
   ],
   providers: [
