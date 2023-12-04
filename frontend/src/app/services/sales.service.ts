@@ -16,6 +16,8 @@ export class SalesService {
   }
 
   postSell(cartSell: sales[]) {
-    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, cartSell)
+    return this.http.post(`${this.myAppUrl}${this.myApiUrl}`,cartSell)
   }
+
+  
 }
