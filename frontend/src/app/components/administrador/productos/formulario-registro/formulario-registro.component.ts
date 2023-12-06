@@ -1,4 +1,4 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProductoService } from '../producto.service';
 import { AlertComponent } from 'ngx-bootstrap/alert';
@@ -12,7 +12,7 @@ import { publications } from 'src/app/interfaces/publications';
   styleUrls: ['./formulario-registro.component.scss']
 })
 export class FormularioRegistroComponent implements OnInit {
-
+  @Output() hideModal = new EventEmitter<boolean>();
   //PARTE DEL ALERT
   alerts: any[] = [];
   Admin: any;
@@ -67,6 +67,7 @@ export class FormularioRegistroComponent implements OnInit {
           msg: `Producto registrado correctamente (added: ${new Date().toLocaleTimeString()})`,
           timeout: 3000
         });
+        this.hideModal.emit(true);
       },
       error: (error) => {
         alert('No se pudo registrar el producto')
@@ -74,6 +75,7 @@ export class FormularioRegistroComponent implements OnInit {
       }
     });
   }
+  
   onClosed(dismissedAlert: AlertComponent): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }

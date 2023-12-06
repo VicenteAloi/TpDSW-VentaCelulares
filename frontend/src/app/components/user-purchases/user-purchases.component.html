@@ -8,72 +8,6 @@
         <div class="card">
           <p><b><i>Tus Compras</i></b></p>
         </div>
-<<<<<<< HEAD
-
-
-
-
-
-
-        <!-- <tbody *ngFor="let sales of listOfSales" class="rows">
-                <tr>
-                  <td class="data">
-                    <p>{{sales.model}}</p>
-                  </td>
-                  <td class="data">
-                    <p>{{sales.brand}}</p>
-                  </td>
-                  <td class="data">
-                    <p>$ {{sales.price}}</p>
-                  </td>
-                  <td class="data"><img [src]=getUrl(sales?.image) alt=""></td>
-                  <td class="data"><button class="btn btn-secondary" (click)="productInfo(template)">Ver Mas</button>
-                  </td>
-                </tr> -->
-
-        <mat-accordion *ngFor="let sales of listOfSales" class="rows">
-          <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
-            <mat-expansion-panel-header>
-              <mat-panel-title class="title">
-                <tbody class="content">
-                  <tr>
-                    <td class="data">
-                      <p><strong>Modelo: </strong> {{sales.model}} </p>
-                    </td>
-
-                    <td class="data" style="transform: translate(20%);">
-                      <p><strong>Marca: </strong> {{sales.brand}} </p>
-                    </td>
-
-                  </tr>
-                </tbody>
-              </mat-panel-title>
-              <mat-panel-description *ngIf="!panelOpenState" style="margin-left: 40%;">
-                Click para mas detalles!
-              </mat-panel-description>
-            </mat-expansion-panel-header>
-            <div class="modal-body">
-              <div class="modal-body-right">
-                <img [src]=getUrl(sales?.image) style="max-height:200px ;" alt="">
-              </div>
-              <div class="modal-body-left">
-                <td>
-                  <b>
-                    Cantidad compra: {{sales.quantity}}
-                  </b>
-                </td><br>
-                <td>
-                  <b>Fecha Compra: {{sales.createdAt}}</b>
-                </td><br>
-                <td>
-                  <b>Precio: {{sales.price*sales.quantity}}</b>
-                </td><br>
-              </div>
-
-            </div>
-          </mat-expansion-panel>
-        </mat-accordion>
-=======
                 <mat-accordion *ngFor="let sales of listOfSales" class="rows">
                   <mat-expansion-panel (opened)="panelOpenState = true" (closed)="panelOpenState = false">
                     <mat-expansion-panel-header >
@@ -117,7 +51,6 @@
                   </div>
                   </mat-expansion-panel>
                 </mat-accordion>
->>>>>>> 1556ac592c52cb57235c5faf8e8cf38ee683bf88
       </div>
     </div>
   </div>

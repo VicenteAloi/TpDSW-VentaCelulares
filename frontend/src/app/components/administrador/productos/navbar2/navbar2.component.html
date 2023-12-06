@@ -18,7 +18,7 @@
     </button>
   </div>
   <div class="modal-body mt-2">
-    <app-formulario-registro></app-formulario-registro>
+    <app-formulario-registro (hideModal)="modalRef?.hide()"></app-formulario-registro>
     <button aria-label="Close" (click)="modalRef?.hide()" class="btn btn-danger">Cancelar</button>
   </div>
 </ng-template>

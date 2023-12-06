@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./modify-form-administrator.component.scss']
 })
 export class ModifyFormAdministratorComponent {
+  @Output() hideModal = new EventEmitter<boolean>();
   @Input() administratorReceived: any;
   constructor(private adminService: AdministratorsService, private toaster: ToastrService) { }
 
@@ -30,5 +31,6 @@ export class ModifyFormAdministratorComponent {
       },
       error: (err) => alert('No se realizo correctamente la modificacion')
     });
+    this.hideModal.emit(true);
   }
 }

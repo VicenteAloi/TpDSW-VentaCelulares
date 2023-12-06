@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { ProductoService } from '../producto.service';
 import { product } from 'src/app/interfaces/product';
 import { ToastrService } from 'ngx-toastr';
@@ -11,6 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class FormularioModificarComponent implements OnInit {
   constructor(private productoS: ProductoService, private toastr: ToastrService) { }
   @Input() productReceived: any;
+  @Output() hideModal = new EventEmitter<boolean>();
   ngOnInit(): void {
 
   };
@@ -30,7 +31,8 @@ export class FormularioModificarComponent implements OnInit {
     this.productoS.updateProduct(productModify).subscribe({
       complete: () => {
         this.productoS.retraiveProducts();
-        this.toastr.success('Producto Actualizado')
+        this.toastr.success('Producto Actualizado');
+        this.hideModal.emit(true);
       },
       error: (err) => alert('No se realizo correctamente la modificacion')
     });

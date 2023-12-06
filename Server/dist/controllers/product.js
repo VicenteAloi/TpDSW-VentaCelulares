@@ -8,11 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.getProductsByName = exports.getOneProduct = exports.deleteProduct = exports.updateProduct = exports.newProduct = exports.getProducts = void 0;
 const product_1 = require("../models/product");
 const publication_1 = require("../models/publication");
 const sales_1 = require("../models/sales");
+const connection_1 = __importDefault(require("../db/connection"));
+const sequelize_1 = require("sequelize");
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listProducts = yield product_1.Product.findAll();
     res.json(listProducts);
@@ -107,12 +112,24 @@ const getOneProduct = (request, response) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.getOneProduct = getOneProduct;
+/*export const getProductsByName = async (req: Request, res: Response) => {
+  const { name } = req.params;
+  const productsByName = await Product.findAll({
+    where: {
+      brand:name
+    }
+  });
+  if (productsByName) {
+    return res.status(200).json(productsByName);
+  } else {
+    return res.status(400).json({ msg: 'No se ha podido realizar la busqueda' });
+  }
+}*/
 const getProductsByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { name } = req.params;
-    const productsByName = yield product_1.Product.findAll({
-        where: {
-            brand: name
-        }
+    const productsByName = yield connection_1.default.query('SELECT * FROM products WHERE brand like :search_brand ', {
+        replacements: { search_brand: `%${name}%` },
+        type: sequelize_1.QueryTypes.SELECT
     });
     if (productsByName) {
         return res.status(200).json(productsByName);

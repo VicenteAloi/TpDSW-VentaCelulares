@@ -44,6 +44,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-formulario-modificar [productReceived]="product"></app-formulario-modificar>
+    <app-formulario-modificar [productReceived]="product" (hideModal)="modalRef?.hide()"></app-formulario-modificar>
   </div>
 </ng-template>

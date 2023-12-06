@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { AdministratorsService } from '../administrators.service';
 import { ToastrService } from 'ngx-toastr';
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./administrator-form.component.scss']
 })
 export class AdministratorFormComponent {
-
+  @Output() hideModal = new EventEmitter<boolean>();
   administratorForm = new FormGroup({
     dni: new FormControl(0, Validators.required),
     name: new FormControl("", Validators.required),
@@ -36,6 +36,6 @@ export class AdministratorFormComponent {
       },
       error: () => this.toastr.error('DNI o EMAIL ya existentes')
     });
-
+    this.hideModal.emit(true);
   }
 }

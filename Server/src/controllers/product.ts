@@ -2,6 +2,8 @@ import { Request, Response } from "express"
 import { Product } from "../models/product";
 import { Publication } from "../models/publication";
 import { Sales } from "../models/sales";
+import sequelize from "../db/connection";
+import { QueryTypes } from "sequelize";
 
 export const getProducts = async (req: Request, res: Response) => {
   const listProducts = await Product.findAll();
@@ -35,8 +37,7 @@ export const newProduct = async (request: Request, response: Response) => {
       return response.status(400).json({ msg: 'Ocurrio un Error', error });
     }
   }
-}
-  ;
+};
 
 
 
@@ -91,13 +92,28 @@ export const getOneProduct = async (request: Request, response: Response) => {
     return response.status(400).json({ msg: 'ocurrio un error', error });
   }
 }
-export const getProductsByName = async (req: Request, res: Response) => {
+/*export const getProductsByName = async (req: Request, res: Response) => {
   const { name } = req.params;
   const productsByName = await Product.findAll({
     where: {
-      brand: name
+      brand:name
     }
   });
+  if (productsByName) {
+    return res.status(200).json(productsByName);
+  } else {
+    return res.status(400).json({ msg: 'No se ha podido realizar la busqueda' });
+  }
+}*/
+
+export const getProductsByName = async (req: Request, res: Response) => {
+  const { name } = req.params;
+  const productsByName = await sequelize.query( 'SELECT * FROM products WHERE brand like :search_brand ',
+  {
+    replacements: { search_brand: `%${name}%` },
+    type:QueryTypes.SELECT
+  }
+  );
   if (productsByName) {
     return res.status(200).json(productsByName);
   } else {

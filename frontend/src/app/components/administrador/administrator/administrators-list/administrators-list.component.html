@@ -43,6 +43,6 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-modify-form-administrator [administratorReceived]="administrator"></app-modify-form-administrator>
+    <app-modify-form-administrator [administratorReceived]="administrator" (hideModal)="modalRef?.hide()"></app-modify-form-administrator>
   </div>
 </ng-template>
