@@ -22,13 +22,21 @@ export class AdministratorsListComponent {
     this.adminService.retraiveAdministrator().subscribe(respuesta => this.administratorResgisted = respuesta);
 
   }
+  openModal2(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   deleteAdministrator(indice: number) {
     const administrator = this.administratorResgisted[indice];
+
+
     this.adminService.deleteAdministrator(administrator).subscribe({
       complete: () => this.adminService.retraiveAdministrator(),
       error: (error) => console.log(error)
     });
+
+    this.modalRef?.hide()
+
   };
 
   modalRef?: BsModalRef;
