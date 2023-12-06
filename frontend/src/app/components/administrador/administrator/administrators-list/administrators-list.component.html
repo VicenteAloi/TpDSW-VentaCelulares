@@ -20,7 +20,32 @@
               <td>
                 <div class="text-center">
                   <div class="btn-group">
-                    <button class="btn btn-danger" (click)="deleteAdministrator(indice)" [disabled]="user.dni == administrator.dni">Eliminar</button>
+
+
+                    <button type="button" class="btn btn-danger" (click)="openModal2(template2)"
+                      [disabled]="user.dni == administrator.dni">Eliminar</button>
+
+                    <ng-template #template2>
+                      <div class="modal-header">
+                        <h4 class="modal-title pull-left">Eliminando Administrador</h4>
+                        <button type="button" class="btn-close close pull-right" aria-label="Close"
+                          (click)="modalRef?.hide()">
+                          <span aria-hidden="true" class="visually-hidden">&times;</span>
+                        </button>
+                      </div>
+                      <div class="modal-body">
+                        <p>Estas Seguro de Elimiar a {{administrator.email}}</p>
+                        <div>
+                          <button class="btn btn-danger" (click)="deleteAdministrator(indice)">Eliminar</button>
+                          <button style="margin-left: 50%;" class="btn btn-success"
+                            (click)="modalRef?.hide()">Cerrar</button>
+                        </div>
+
+                      </div>
+                    </ng-template>
+
+
+
                     <button class="btn btn-primary" (click)="openModal(template,indice)">Modificar</button>
                   </div>
                 </div>
@@ -43,6 +68,7 @@
     </button>
   </div>
   <div class="modal-body">
-    <app-modify-form-administrator [administratorReceived]="administrator" (hideModal)="modalRef?.hide()"></app-modify-form-administrator>
+    <app-modify-form-administrator [administratorReceived]="administrator"
+      (hideModal)="modalRef?.hide()"></app-modify-form-administrator>
   </div>
 </ng-template>

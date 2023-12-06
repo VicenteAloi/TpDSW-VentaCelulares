@@ -19,19 +19,24 @@ export class ProducListComponent implements OnInit {
   }
 
   deleteProducto(indice: number) {
-    if (confirm("Seguro que Desea Eliminar el Producto?")) {
-      const produ = this.productosRegistrados[indice];
-      this.productoS.deleteProducto(produ).subscribe({
-        complete: () => { this.productoS.retraiveProducts() },
-        error: (error) => console.log(error)
-      });
-    }
+
+    const produ = this.productosRegistrados[indice];
+    this.productoS.deleteProducto(produ).subscribe({
+      complete: () => { this.productoS.retraiveProducts() },
+      error: (error) => console.log(error)
+    });
+    this.modalRef?.hide()
+
 
   };
 
   modalRef?: BsModalRef;
   openModal(template: TemplateRef<any>, index: number) {
     this.product = this.productosRegistrados[index];
+    this.modalRef = this.modalService.show(template);
+  }
+
+  openModal2(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 }

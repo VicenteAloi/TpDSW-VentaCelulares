@@ -1,5 +1,6 @@
 import { Request, Response } from 'express';
 import { User } from '../models/user';
+import { Sales } from '../models/sales';
 
 
 export const getAdministrators = async (request: Request, response: Response) => {
@@ -18,13 +19,21 @@ export const getAdministrators = async (request: Request, response: Response) =>
 
 export const deleteAdministrator = async (request: Request, response: Response) => {
   const { dni } = request.params;
-  const admin = await User.destroy({
+  const admin: any = await User.findOne({
+    where: {
+      dni: dni
+    }
+  })
+  const sales = await Sales.destroy({
+    where: { idCustomer: admin.id }
+  })
+  const admindeleted = await User.destroy({
     where: {
       dni: dni,
       isAdmin: true
     }
   })
-  if (admin) {
+  if (admindeleted) {
     response.status(200).send({ msg: 'Administrador Eliminado' })  //HAY QUE VER COMO HACER PARA RETORNAR 404, AUNQUE SE SUPONE QUE SIEMPRE VA A ESTAR LA TUPLA, YA QUE LA ELIMINA DE UN LISTADO
   } else {
     response.status(400).send({ msg: 'Ocurrio un Error' })

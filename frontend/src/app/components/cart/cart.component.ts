@@ -19,7 +19,7 @@ export class CartComponent {
   buttonDisable: boolean = false;
   productsCart: any[] = [];
   cartSales: sales[] = [];
-
+  user: any = localStorage.getItem('user')
   constructor(private modalService: BsModalService, private cartService: CartService, private sellService: SalesService, private alertService: ToastrService, private router: Router, private pay: PaymentService) {
 
   }
@@ -84,6 +84,9 @@ export class CartComponent {
   }
 
   openModal(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
+  openModal2(template: TemplateRef<any>) {
     this.modalRef = this.modalService.show(template);
   }
 
