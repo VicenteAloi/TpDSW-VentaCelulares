@@ -5,7 +5,7 @@
         class="d-inline-block align-text-top">
     </a>
     <h4 class="cabecera">Listado Administradores</h4>
-    <!-- Button trigger modal -->
+    
     <button type="button" class="btn btn-secondary" (click)="staticModal.show()">Alta Administrador</button>
   </div>
 </nav>
@@ -22,7 +22,7 @@
       </div>
       <div class="modal-body mt-2">
         <app-administrator-form (hideModal)="staticModal.hide()"></app-administrator-form>
-        <button aria-label="Close" (click)="staticModal.hide()" class="btn btn-danger">Cancelar</button>
+        <button aria-label="Close" (click)="staticModal.hide()" class="btn btn-danger" style="width: 100%;">Cancelar</button>
       </div>
     </div>
   </div>

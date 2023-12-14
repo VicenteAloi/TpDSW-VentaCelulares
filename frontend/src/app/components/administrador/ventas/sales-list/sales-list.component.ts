@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
-import { SalesService } from '../sales.service';
+import { SalesService } from '../../../../services/sales.service';
 import { sales } from 'src/app/interfaces/sales';
 
 @Component({

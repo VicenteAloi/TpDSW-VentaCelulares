@@ -11,7 +11,7 @@
     [attr.aria-expanded]="!isCollapsed" aria-controls="collapseBasic" class="carrito"><img
       src="../../../assets/img/carrito.png"></mat-icon>
   <div class="btn-group" *ngIf="login" dropdown>
-    <button *ngIf="user.isAdmin" routerLink="/admin" class="btn">Admin</button>
+    <button *ngIf="user.isAdmin" routerLink="/admin"mat-button>Admin</button>
     <button mat-button [matMenuTriggerFor]="menu" class="btn"
       aria-label="Example icon-button with a menu">{{user.name}}</button>
     <mat-menu #menu="matMenu">
@@ -37,6 +37,5 @@
 <div id="collapseBasic" [collapse]="isCollapsed" [isAnimated]="true" class="cart_panel">
   <div class="well ">
     <app-cart (eventPay)="pay"></app-cart>
-    <!-- <app-payment *ngIf="pay"></app-payment> -->
   </div>
 </div>

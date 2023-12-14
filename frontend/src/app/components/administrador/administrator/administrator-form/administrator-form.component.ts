@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AdministratorsService } from '../administrators.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -11,7 +11,7 @@ import { ToastrService } from 'ngx-toastr';
 export class AdministratorFormComponent {
   @Output() hideModal = new EventEmitter<boolean>();
   administratorForm = new FormGroup({
-    dni: new FormControl(0, Validators.required),
+    dni: new FormControl("", Validators.required),
     name: new FormControl("", Validators.required),
     surname: new FormControl("", Validators.required),
     email: new FormControl("", [Validators.required, Validators.email]),
@@ -32,7 +32,14 @@ export class AdministratorFormComponent {
     this.adminService.postAdministrator(administrator).subscribe({
       complete: () => {
         this.adminService.retraiveAdministrator();
-        this.toastr.success('Administrador cargado correctamente')
+        this.toastr.success('Administrador cargado correctamente');
+        this.administratorForm = new FormGroup({
+          dni: new FormControl("", Validators.required),
+          name: new FormControl("", Validators.required),
+          surname: new FormControl("", Validators.required),
+          email: new FormControl("", [Validators.required, Validators.email]),
+          password: new FormControl("", Validators.required),
+        });
       },
       error: () => this.toastr.error('DNI o EMAIL ya existentes')
     });

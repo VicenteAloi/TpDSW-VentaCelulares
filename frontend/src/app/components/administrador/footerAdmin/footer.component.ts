@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoService } from '../productos/producto.service';
-import { CustomersService } from './customers.service';
-import { SalesService } from '../ventas/sales.service';
+import { SalesService } from '../../../services/sales.service';
+import { CustomerService } from 'src/app/services/customer.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-footerAdmin',
@@ -13,7 +13,7 @@ export class FooterAdminComponent implements OnInit {
   countCustomers: number = 0;
   countSales = 0;
   fecha: string = new Date().toLocaleDateString('en-GB');
-  constructor(private productoS: ProductoService, private customers: CustomersService, private sales: SalesService) { }
+  constructor(private productoS: ProductService, private customers: CustomerService, private sales: SalesService) { }
   ngOnInit(): void {
 
     this.productoS.retraiveProducts().subscribe(response => this.countProducts = response.length);

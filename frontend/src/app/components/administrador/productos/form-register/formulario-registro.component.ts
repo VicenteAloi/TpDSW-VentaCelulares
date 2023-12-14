@@ -1,8 +1,7 @@
 import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
-import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
-import { ProductoService } from '../producto.service';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { AlertComponent } from 'ngx-bootstrap/alert';
-import { publications } from 'src/app/interfaces/publications';
+import { ProductService } from 'src/app/services/product.service';
 
 
 
@@ -19,13 +18,12 @@ export class FormularioRegistroComponent implements OnInit {
 
   //FORMULARIO Y USO DE SERVICE
   productForm: FormGroup;
-  constructor(private productoS: ProductoService, public fb: FormBuilder) {
+  constructor(private productoS: ProductService, public fb: FormBuilder) {
     this.productForm = this.fb.group({
-
       model: ['', [Validators.required]],
       brand: ['', [Validators.required]],
-      price: [0, [Validators.required]],
-      stock: [0, [Validators.required]],
+      price: ['', [Validators.required]],
+      stock: ['', [Validators.required]],
       description: ['', [Validators.required]],
       file: [null, [Validators.required]]
 
@@ -51,7 +49,6 @@ export class FormularioRegistroComponent implements OnInit {
   }
 
   registrarForm() {
-    const date = new Date();
     const formData = new FormData();
     formData.append('model', this.productForm.get('model')?.value);
     formData.append('brand', this.productForm.get('brand')?.value);

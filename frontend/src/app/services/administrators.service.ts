@@ -21,7 +21,6 @@ export class AdministratorsService {
     //ACA MANDAMOS MEDIANTE UN POST A LA API
     // return this.http.post('http://localhost:3001/api/Administrators', administratorEnter);
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, administratorEnter);
-
   }
 
   retraiveAdministrator() {

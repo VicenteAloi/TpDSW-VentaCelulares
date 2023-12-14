@@ -23,9 +23,9 @@
               <td>
                 <div class="text-center">
                   <div class="btn-group">
-
-                    <button type="button" class="btn btn-danger" (click)="openModal2(template2)">Eliminar</button>
-
+                    <button mat-mini-fab color="warn" (click)="openModal2(template2)">
+                      <mat-icon>delete</mat-icon>
+                    </button>
                     <ng-template #template2>
                       <div class="modal-header">
                         <h4 class="modal-title pull-left">Eliminando Producto</h4>
@@ -35,8 +35,8 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <p>Estas seguro de Eliminar {{productos.brand}} {{productos.model}}</p>
-                        <div>
+                        <p>Estas seguro de eliminar {{productos.brand}} {{productos.model}}</p>
+                        <div class="btn-group">
                           <button class="btn btn-danger" (click)="deleteProducto(indice)">Eliminar</button>
                           <button style="margin-left: 50%;" class="btn btn-success"
                             (click)="modalRef?.hide()">Cerrar</button>
@@ -44,12 +44,9 @@
                       </div>
 
                     </ng-template>
-
-
-
-
-
-                    <button class="btn btn-primary" (click)="openModal(template,indice)">Modificar</button>
+                    <button mat-mini-fab color="primary" (click)="openModal(template,indice)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
                   </div>
                 </div>
               </td>

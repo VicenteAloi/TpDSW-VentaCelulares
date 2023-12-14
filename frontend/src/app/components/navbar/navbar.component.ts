@@ -63,14 +63,14 @@ export class NavbarComponent implements OnInit {
     if (newSearch != '') {
       let oldSearch = localStorage.getItem('Search');
 
-      if (location.pathname == `/dashboard/productsSearch/${oldSearch}`) {
-        this.router.navigate([`/dashboard/productsSearch/${newSearch}`])
+      if (location.pathname == `/dashboard/products-search/${oldSearch}`) {
+        this.router.navigate([`/dashboard/products-search/${newSearch}`])
         setTimeout(() => {
           location.reload();
         }, 500);
 
       } else {
-        this.router.navigate([`/dashboard/productsSearch/${newSearch}`])
+        this.router.navigate([`/dashboard/products-search/${newSearch}`])
       }
     } else {
       this.toastr.error('Debe llenar el cuadro de busqueda');
@@ -80,16 +80,16 @@ export class NavbarComponent implements OnInit {
 
   }
   userPurchases() {
-    this.router.navigate([`dashboard/userPurchases/${this.user.id}`])
+    this.router.navigate([`dashboard/user-purchases/${this.user.id}`])
   }
 
   userProfileModifier() {
-    this.router.navigate([`dashboard/userProfile/:${this.dni}`])
+    this.router.navigate([`dashboard/user-profile/:${this.dni}`])
   }
 
   showSearch() {
     let search = localStorage.getItem('Search');
-    if (location.pathname == '/dashboard/allproducts' || location.pathname == `/dashboard/productsSearch/${search}`) {
+    if (location.pathname == '/dashboard/all-products' || location.pathname == `/dashboard/products-search/${search}`) {
       this.showSearchBar = true;
     }
   }

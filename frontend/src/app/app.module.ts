@@ -24,6 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
+import {MatButtonModule} from '@angular/material/button';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -46,12 +47,12 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AdministratorComponent } from './components/administrador/administrator/administrator.component';
 
 
-import { PanelAdministradorComponent } from './components/administrador/panel-administrador/panel-administrador.component';
+import { PanelAdministradorComponent } from './components/administrador/panel-administrator/panel-administrador.component';
 import { ProductosComponent } from './components/administrador/productos/productos.component';
 import { TabsComponent } from './components/administrador/tabs/tabs.component';
 import { VentasComponent } from './components/administrador/ventas/ventas.component';
-import { FormularioModificarComponent } from './components/administrador/productos/formulario-modificar/formulario-modificar.component';
-import { FormularioRegistroComponent } from './components/administrador/productos/formulario-registro/formulario-registro.component';
+import { FormularioModificarComponent } from './components/administrador/productos/form-modify/formulario-modificar.component';
+import { FormularioRegistroComponent } from './components/administrador/productos/form-register/formulario-registro.component';
 import { ProducListComponent } from './components/administrador/productos/produc-list/produc-list.component';
 import { AdministratorFormComponent } from './components/administrador/administrator/administrator-form/administrator-form.component';
 import { AdministratorsListComponent } from './components/administrador/administrator/administrators-list/administrators-list.component';
@@ -115,7 +116,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     CartComponent,
     PublicationsListComponent,
     AllProductsComponent,
-    PaymentComponent,
+    PaymentComponent
 
   ],
   imports: [
@@ -149,7 +150,8 @@ import { PaymentComponent } from './components/payment/payment.component';
     MatFormFieldModule,
     MatStepperModule,
     MatExpansionModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatButtonModule
 
   ],
   providers: [
