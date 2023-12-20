@@ -1,8 +1,8 @@
 .fondo {
-  background-image: url(https://wallpapercave.com/wp/wp6994803.jpg);
+  background-color: black;
   background-size: cover;
   background-attachment: scroll;
-  
+
 }
 
 h2 {
@@ -35,4 +35,25 @@ h2 {
 
 .modal-body-right img {
   max-width: 150px;
+}
+
+.icono-wrap {
+  background-color: rgba(209, 210, 212, 0.291);
+}
+
+
+@media (max-width:768px) {
+
+
+  .servicio-fila {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .icono-wrap {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
 }

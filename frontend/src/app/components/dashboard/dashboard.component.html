@@ -1,42 +1,50 @@
 <app-navbar></app-navbar>
+<app-products-carousel></app-products-carousel>
+<h3 class="text-start px-5 fs- my-3">
+  Productos
+</h3>
 
-<div class="fondo">
-  <div class="container text-left" style="padding: 15px;">
+<section class="container-fluid">
+  <div class="row w-80 mx-auto servicio-fila">
 
-    <div class="card" style="display: block; width: auto;padding: 15px">
-      <h2>Novedades</h2>
-    </div>
-    <div style="margin-bottom: 10px;">
-      <app-products-carousel></app-products-carousel>
-    </div>
-
-    <div class="card" style="display: block;width: auto;padding: 15px; ">
-      <h2>Productos de Nuestra Seleccion</h2>
-    </div>
-
-
-    <div class="card" style="margin-right: 10px;" *ngFor="let item of listProducts">
-
-      <img [src]=getUrl(item.image) class="card-img-top" alt="...">
-      <div class="card-body">
-        <h5 class="card-title">{{item.model}}</h5>
-        <p class="card-text">{{item.brand}}
-        </p>
-
-
-
-        <div class="card" style="padding: 10px; margin: 0; width: 253px; background-color: rgba(255, 255, 255, 0.453);">
-          <button class="btn btn-success" (click)="findProduct(item)">Comprar</button>
-          <div style="display: inline-block; margin-left: 23%;">
-            Precio: ${{item.price}}
-          </div>
+    <div class="col-lg-4 col-md-6 col-sm-12 my-4 d-flex icono-wrap" *ngFor="let item of listProducts">
+      <img [src]=getUrl(item.image) alt="Celular" width="220" height="200">
+      <div>
+        <h3 class="fs-5 px-3 pb-1">{{item.brand}} {{item.model}}</h3>
+        <p class="px-3">{{item.description}}</p>
+        <div class="d-grid gap-2 me-auto w-20">
+          <button class=" btn btn-success px-3 pb-1 w-20 mt-3" (click)="findProduct(item)">Comprar</button>
         </div>
-
 
       </div>
 
     </div>
 
   </div>
-  <app-footer></app-footer>
+</section>
+
+
+
+
+
+<div class="card justify-content-center" style="margin-right: 10px;" *ngFor="let item of listProducts">
+
+  <img [src]=getUrl(item.image) class="card-img-top" alt="...">
+  <div class="card-body">
+    <h5 class="card-title">{{item.model}}</h5>
+    <p class="card-text">{{item.brand}}
+    </p>
+
+
+
+    <div class="d-grid gap-2 w-20 me-auto">
+      <button class=" btn btn-success px-3 pb-1 w-20 mt-3" (click)="findProduct(item)">Comprar</button>
+    </div>
+
+
+
+  </div>
+
 </div>
+
+<app-footer></app-footer>

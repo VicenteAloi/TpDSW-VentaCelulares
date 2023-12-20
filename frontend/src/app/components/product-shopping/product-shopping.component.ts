@@ -1,6 +1,7 @@
 import { Component, OnInit, afterNextRender } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { filter } from 'rxjs';
+import { environment } from 'src/app/environments/environments';
 import { product } from 'src/app/interfaces/product';
 import { CartService } from 'src/app/services/cart.service';
 import { ProductService } from 'src/app/services/product.service';
@@ -12,6 +13,7 @@ import { __param } from 'tslib';
   styleUrls: ['./product-shopping.component.css']
 })
 export class ProductShoppingComponent implements OnInit {
+  private myApiUrl: string;
   x = 5;
   y = 2;
   newProduct: product | undefined;
@@ -22,7 +24,7 @@ export class ProductShoppingComponent implements OnInit {
 
   constructor(private _productService: ProductService,
     private activateRouter: ActivatedRoute, private cartService: CartService) {
-
+    this.myApiUrl = environment.endpoint;
 
   }
 
@@ -35,9 +37,7 @@ export class ProductShoppingComponent implements OnInit {
       this.product = param;
       this.findProduct();
       setTimeout(() => {
-        console.log("Producto", this.product)
-        console.log("Producto", this.newProduct),
-          this.stock = this.newProduct?.stock
+        this.stock = this.newProduct?.stock
       }, 500);
 
     })
@@ -47,16 +47,14 @@ export class ProductShoppingComponent implements OnInit {
   findProduct() {
     this._productService.getProducts().subscribe((value) => {
       this.listOfProducts = value
-      console.log(this.listOfProducts)
       let index = this.listOfProducts.findIndex((product) => product.id == this.product.id)
-      console.log(index)
       this.newProduct = this.listOfProducts[index];
     })
   }
 
   addCart(newProduct: product, amount: any) {
     const product: product = {
-      id: newProduct.id, //PK
+      id: newProduct.id,
       model: newProduct.model,
       brand: newProduct.brand,
       description: newProduct.description,
@@ -70,7 +68,7 @@ export class ProductShoppingComponent implements OnInit {
   }
 
   getUrl(image: string | undefined) {
-    return `http://localhost:3001/static/${image}`
+    return `${this.myApiUrl}static/${image}`
   }
 
   increaseAmount() {

@@ -32,7 +32,7 @@ export class AdministratorsListComponent {
 
     this.adminService.deleteAdministrator(administrator).subscribe({
       complete: () => this.adminService.retraiveAdministrator(),
-      error: (error) => console.log(error)
+      // error: (error) => console.log(error)
     });
 
     this.modalRef?.hide()

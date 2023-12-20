@@ -1,7 +1,7 @@
 export interface user {
-  idUser: number, //PK, Autoincremental
+  idUser: number,
   password: string
-  email: string, //Unique 
+  email: string,
   dni: string,
   name: string,
   surname: string,

@@ -115,7 +115,7 @@ import { PaymentComponent } from './components/payment/payment.component';
     CartComponent,
     PublicationsListComponent,
     AllProductsComponent,
-    PaymentComponent,
+    PaymentComponent
 
   ],
   imports: [

@@ -29,14 +29,14 @@ export class LoginComponent {
   }
 
   login() {
-    //Validar que el usuario ingrese datos
+
     if (this.email == '' || this.password == '') {
       this.toastr.error('Todos los Campos son Obligatorios', 'Error');
       return;
     }
 
 
-    //Crear el body
+
     let user: any = {
       password: this.password,
       email: this.email,

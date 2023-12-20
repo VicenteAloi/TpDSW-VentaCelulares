@@ -19,7 +19,7 @@ export class AdministratorFormComponent {
   });
   constructor(private adminService: AdministratorsService, private toastr: ToastrService) { }
 
-  registrarForm(){
+  registrarForm() {
     const administrator: any = {
       'dni': this.administratorForm.controls.dni.value,
       'name': this.administratorForm.controls.name.value,
@@ -28,7 +28,6 @@ export class AdministratorFormComponent {
       'password': this.administratorForm.controls.password.value,
       'isAdmin': true
     }
-    console.log(administrator);
     this.adminService.postAdministrator(administrator).subscribe({
       complete: () => {
         this.adminService.retraiveAdministrator();

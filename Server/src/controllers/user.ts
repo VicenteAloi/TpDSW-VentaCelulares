@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../models/user';
 import jwt from 'jsonwebtoken'
-import { json } from 'sequelize';
-import connection from '../db/connection'
 
 export const newUser = async (req: Request, res: Response) => {
   console.log('new user entrando');

@@ -29,19 +29,18 @@ export class SignInComponent {
   }
 
   addUser() {
-    //Validar que los campos no sean vacio
+
     if (this.password == '' || this.confirmPassword == '' || this.email == '') {
       this.toastr.error('Todos los Campos son Obligatorios', 'Error');
       return;
     }
 
-    //Validar si las password sean iguales
     if (this.password != this.confirmPassword) {
       this.toastr.error('Las Password Ingresadas son Distintas', 'Error');
       return;
     }
 
-    //Crear el usuario
+
     const user: any = {
       dni: this.dni,
       email: this.email,

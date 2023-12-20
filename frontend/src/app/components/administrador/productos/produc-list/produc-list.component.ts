@@ -23,7 +23,7 @@ export class ProducListComponent implements OnInit {
     const produ = this.productosRegistrados[indice];
     this.productoS.deleteProducto(produ).subscribe({
       complete: () => { this.productoS.retraiveProducts() },
-      error: (error) => console.log(error)
+      // error: (error) => console.log(error)
     });
     this.modalRef?.hide()
 

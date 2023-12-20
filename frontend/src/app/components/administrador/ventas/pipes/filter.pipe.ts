@@ -11,7 +11,7 @@ export class FilterPipe implements PipeTransform {
     }else{
       const resultSales=[];
       for(const sales of value){
-        if(sales.dni.toString().indexOf(arg) > -1){   //ver porque me tira error al usar indexOf
+        if(sales.dni.toString().indexOf(arg) > -1){   
         resultSales.push(sales);
         }
       }
