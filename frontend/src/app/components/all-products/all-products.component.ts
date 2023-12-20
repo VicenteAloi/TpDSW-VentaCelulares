@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
-import { ProductoService } from '../administrador/productos/producto.service';
 import { Route, Router } from '@angular/router';
 import { environment } from 'src/app/environments/environments';
 

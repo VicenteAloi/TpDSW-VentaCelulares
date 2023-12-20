@@ -20,7 +20,6 @@ export class AdministratorsService {
   postAdministrator(administratorEnter: user) {
 
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, administratorEnter);
-
   }
 
   retraiveAdministrator() {

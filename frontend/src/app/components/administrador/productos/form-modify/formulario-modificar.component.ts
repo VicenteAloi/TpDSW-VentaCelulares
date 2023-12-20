@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ProductoService } from '../producto.service';
 import { product } from 'src/app/interfaces/product';
 import { ToastrService } from 'ngx-toastr';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-formulario-modificar',
@@ -9,7 +9,7 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./formulario-modificar.component.scss']
 })
 export class FormularioModificarComponent implements OnInit {
-  constructor(private productoS: ProductoService, private toastr: ToastrService) { }
+  constructor(private productoS: ProductService, private toastr: ToastrService) { }
   @Input() productReceived: any;
   @Output() hideModal = new EventEmitter<boolean>();
   ngOnInit(): void {
@@ -17,7 +17,10 @@ export class FormularioModificarComponent implements OnInit {
   };
 
   updateProducto(price: any, stock: any, description: any) {
-    const productModify: product = {
+    if(price.value == '' && stock.value == '' && description.value == ''){
+      this.toastr.info('No realizaste ningun cambio !').message;
+    }else{
+      const productModify: product = {
       id: this.productReceived.id,
       model: this.productReceived.model,
       brand: this.productReceived.brand,
@@ -34,7 +37,12 @@ export class FormularioModificarComponent implements OnInit {
         this.toastr.success('Producto Actualizado');
         this.hideModal.emit(true);
       },
-      error: (err) => alert('No se realizo correctamente la modificacion')
+      error: (err) => this.toastr.error('No se realizo correctamente la modificacion',err)
     });
+    }
+  }
+
+  getUrl(image: string) {
+    return `http://localhost:3001/static/${image}`
   }
 }

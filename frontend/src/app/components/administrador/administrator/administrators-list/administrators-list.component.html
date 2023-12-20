@@ -9,10 +9,11 @@
               <th>NOMBRE</th>
               <th>APELLIDO</th>
               <th>EMAIL</th>
+              <th>ACCIONES</th>
             </tr>
           </thead>
-          <tbody *ngFor="let administrator of administratorResgisted; let indice=index">
-            <tr>
+          <tbody>
+            <tr *ngFor="let administrator of administratorResgisted; let indice=index">
               <td>{{administrator.dni}}</td>
               <td>{{administrator.name}}</td>
               <td>{{administrator.surname}}</td>
@@ -20,10 +21,9 @@
               <td>
                 <div class="text-center">
                   <div class="btn-group">
-
-
-                    <button type="button" class="btn btn-danger" (click)="openModal2(template2)"
-                      [disabled]="user.dni == administrator.dni">Eliminar</button>
+                    <button mat-mini-fab color="warn" (click)="openModal2(template2)" [disabled]="user.dni == administrator.dni">
+                      <mat-icon>delete</mat-icon>
+                    </button>
 
                     <ng-template #template2>
                       <div class="modal-header">
@@ -34,19 +34,17 @@
                         </button>
                       </div>
                       <div class="modal-body">
-                        <p>Estas Seguro de Elimiar a {{administrator.email}}</p>
-                        <div>
+                        <p>Estas seguro de elimiar a {{administrator.email}}</p>
+                        <div class="btn-group">
                           <button class="btn btn-danger" (click)="deleteAdministrator(indice)">Eliminar</button>
                           <button style="margin-left: 50%;" class="btn btn-success"
                             (click)="modalRef?.hide()">Cerrar</button>
                         </div>
-
                       </div>
                     </ng-template>
-
-
-
-                    <button class="btn btn-primary" (click)="openModal(template,indice)">Modificar</button>
+                    <button mat-mini-fab color="primary" (click)="openModal(template,indice)">
+                      <mat-icon>edit</mat-icon>
+                    </button>
                   </div>
                 </div>
               </td>

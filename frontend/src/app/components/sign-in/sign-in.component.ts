@@ -29,7 +29,7 @@ export class SignInComponent {
   }
 
   addUser() {
-
+    console.log(this.password, this.confirmPassword, this.email)
     if (this.password == '' || this.confirmPassword == '' || this.email == '') {
       this.toastr.error('Todos los Campos son Obligatorios', 'Error');
       return;

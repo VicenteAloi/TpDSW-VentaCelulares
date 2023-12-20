@@ -36,7 +36,7 @@ export class UserPurchasesComponent implements OnInit {
   }
 
   getUrl(image: string | undefined) {
-    return `${this.myApiUrl}/static/${image}`
+    return `${this.myApiUrl}static/${image}`
   }
 
 }

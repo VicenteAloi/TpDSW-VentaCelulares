@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { AdministratorsService } from '../administrators.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { user } from 'src/app/interfaces/user';
 

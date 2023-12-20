@@ -1,20 +1,30 @@
-<div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">DNI: {{administratorReceived.dni}}</span>
-</div>
-<div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Nombre: {{administratorReceived.name}}</span>
-</div>
-<div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Apellido: {{administratorReceived.surname}}</span>
-</div>
-<div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Email</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-    placeholder="{{administratorReceived.email}}" #email>
-</div>
-<div class="input-group input-group-sm mb-3">
-  <span class="input-group-text" id="inputGroup-sizing-sm">Password</span>
-  <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm"
-    placeholder="New Password" #pass>
-</div>
-<button class="btn btn-primary" (click)="updateAdministrator(email,pass)">Actualizar</button>
+<mat-form-field>
+  <mat-label>{{administratorReceived.dni}}</mat-label>
+  <input matInput placeholder="{{administratorReceived.email}}" [disabled]="true">
+</mat-form-field>
+
+  <mat-form-field>
+    <mat-label>{{administratorReceived.name}}</mat-label>
+    <input matInput placeholder="{{administratorReceived.email}}" [disabled]="true">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>{{administratorReceived.surname}}</mat-label>
+    <input matInput placeholder="{{administratorReceived.email}}" [disabled]="true">
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput placeholder="{{administratorReceived.email}}" #email>
+  </mat-form-field>
+  
+  <mat-form-field>
+    <mat-label>Contraseña</mat-label>
+    <input matInput [type]="hide ? 'password' : 'text'" #pass>
+    <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+      <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+    </button>
+  </mat-form-field>
+  
+  <button class="btn btn-primary" (click)="updateAdministrator(email,pass)">Actualizar</button>
+

@@ -1,50 +1,32 @@
 <app-navbar></app-navbar>
 <app-products-carousel></app-products-carousel>
-<h3 class="text-start px-5 fs- my-3">
+<h3 class="text-center px-5 my-5" style="text-decoration:overline;">
   Productos
 </h3>
 
-<section class="container-fluid">
-  <div class="row w-80 mx-auto servicio-fila">
-
-    <div class="col-lg-4 col-md-6 col-sm-12 my-4 d-flex icono-wrap" *ngFor="let item of listProducts">
-      <img [src]=getUrl(item.image) alt="Celular" width="220" height="200">
-      <div>
-        <h3 class="fs-5 px-3 pb-1">{{item.brand}} {{item.model}}</h3>
-        <p class="px-3">{{item.description}}</p>
-        <div class="d-grid gap-2 me-auto w-20">
-          <button class=" btn btn-success px-3 pb-1 w-20 mt-3" (click)="findProduct(item)">Comprar</button>
-        </div>
-
-      </div>
-
-    </div>
-
-  </div>
-</section>
 
 
-
-
-
-<div class="card justify-content-center" style="margin-right: 10px;" *ngFor="let item of listProducts">
-
-  <img [src]=getUrl(item.image) class="card-img-top" alt="...">
+<div class="card" style=" " *ngFor="let item of listProducts">
+  <img [src]=getUrl(item.image) width="180" height="120" alt="ImagenCelular">
   <div class="card-body">
     <h5 class="card-title">{{item.model}}</h5>
-    <p class="card-text">{{item.brand}}
+    <p class="card-text">{{item.description}}
     </p>
-
-
-
-    <div class="d-grid gap-2 w-20 me-auto">
-      <button class=" btn btn-success px-3 pb-1 w-20 mt-3" (click)="findProduct(item)">Comprar</button>
-    </div>
-
-
-
   </div>
+  <ul class="list-group list-group-flush">
+    <li class="list-group-item">
+      <h3 class=" fs-6">{{item.brand}}</h3>
+    </li>
+    <li class="list-group-item" *ngIf="item.stock>0">
+      <p class="text-success d-inline mr-2">Disponible</p>
 
+    </li>
+  </ul>
+  <div class="card-body">
+    <div class="d-grid gap-2">
+      <button class="btn btn-success" type="button" (click)="findProduct(item)">Comprar</button>
+    </div>
+  </div>
 </div>
 
 <app-footer></app-footer>

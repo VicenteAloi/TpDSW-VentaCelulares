@@ -1,36 +1,38 @@
 <app-navbar></app-navbar>
-<section class="container-fluid">
+<div class="w-75 mx-auto border border-1 mt-4 py-3">
+  <h3 class="px-5 py-3">Datos Personales</h3>
+  <div class="input-group px-5 my-2">
+    <input type="text" disabled aria-label="First name" class="form-control" value={{user.name}}>
+    <input type="text" disabled aria-label="Last name" class="form-control" value={{user.surname}}>
+  </div>
 
-</section>
-<h3 class="px-5 py-5">Datos Personales</h3>
-<div class="input-group px-5 my-2">
-  <input type="text" disabled aria-label="First name" class="form-control" value={{user.name}}>
-  <input type="text" disabled aria-label="Last name" class="form-control" value={{user.surname}}>
+  <div class="input-group px-5 my-2">
+    <input type="text" disabled aria-label="First name" class="form-control" value={{user.dni}}>
+    <input type="text" disabled aria-label="Last name" class="form-control" value={{user.createdAt}}>
+  </div>
+
+  <div class="input-group px-5 my-2">
+    <input type="text" class="form-control" placeholder={{user.email}} aria-label="Recipient's username"
+      aria-describedby="button-addon2" [(ngModel)]="newEmail">
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+      (click)="userModifier()">Modificar</button>
+  </div>
+
+  <div class="input-group px-5 my-2">
+    <input type="password" class="form-control" placeholder="Contraseña" aria-label="Recipient's username"
+      aria-describedby="button-addon2" [(ngModel)]="newPassword" #pass1>
+    <input type="password" class="form-control" placeholder="Repita Contraseña" aria-label="Recipient's username"
+      aria-describedby="button-addon2" [(ngModel)]="newPassword2" #pass2>
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+      (click)="showPasswords(pass1,pass2)">{{button}}</button>
+    <button class="btn btn-outline-secondary" type="button" id="button-addon2"
+      (click)="userModifier()">Modificar</button>
+  </div>
 </div>
 
-<div class="input-group px-5 my-2">
-  <input type="text" disabled aria-label="First name" class="form-control" value={{user.dni}}>
-  <input type="text" disabled aria-label="Last name" class="form-control" value={{user.createdAt}}>
-</div>
-
-<div class="input-group px-5 my-2">
-  <input type="text" class="form-control" placeholder={{user.email}} aria-label="Recipient's username"
-    aria-describedby="button-addon2" [(ngModel)]="newEmail">
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="userModifier()">Modificar</button>
-</div>
-
-<div class="input-group px-5 my-2">
-  <input type="password" class="form-control" placeholder="Contraseña" aria-label="Recipient's username"
-    aria-describedby="button-addon2" [(ngModel)]="newPassword" #pass1>
-  <input type="password" class="form-control" placeholder="Repita Contraseña" aria-label="Recipient's username"
-    aria-describedby="button-addon2" [(ngModel)]="newPassword2" #pass2>
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2"
-    (click)="showPasswords(pass1,pass2)">{{button}}</button>
-  <button class="btn btn-outline-secondary" type="button" id="button-addon2" (click)="userModifier()">Modificar</button>
-</div>
-<section class="w-50 mx-auto text-center pt-5">
+<section class="w-50 mx-auto text-center pt-3">
   <h3 class="px-5 pt-5 text-center">
-    Porque es Importante Mantener sus Contraseñas y Mail Actualizados
+    Por qué es Importante Mantener sus Contraseñas y Mail Actualizados?
   </h3>
 
   <p class="p-3 fs-4">

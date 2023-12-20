@@ -1,7 +1,7 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
-import { ProductoService } from '../producto.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
 import { product } from 'src/app/interfaces/product';
+import { ProductService } from 'src/app/services/product.service';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { product } from 'src/app/interfaces/product';
 export class ProducListComponent implements OnInit {
   productosRegistrados: product[] = [];
   product: any;
-  constructor(private productoS: ProductoService, private modalService: BsModalService) { }
+  constructor(private productoS: ProductService, private modalService: BsModalService) { }
 
   ngOnInit(): void {
     this.productoS.retraiveProducts().subscribe(respuesta => this.productosRegistrados = respuesta);

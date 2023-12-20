@@ -1,15 +1,16 @@
 import { Component, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { Parser } from '@angular/compiler';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent {
 
+export class NavBarComponent {
+  @Input() component: any;
   administrator: any
 
   constructor(private modalService: BsModalService,

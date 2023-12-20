@@ -11,7 +11,7 @@ import { ProductShoppingComponent } from './components/product-shopping/product-
 import { UserProfileComponent } from './components/user-profile/user-profile.component';
 import { HelpsComponent } from './components/helps/helps.component';
 
-import { PanelAdministradorComponent } from './components/administrador/panel-administrador/panel-administrador.component';
+import { PanelAdministradorComponent } from './components/administrador/panel-administrator/panel-administrador.component';
 import { ProductosComponent } from './components/administrador/productos/productos.component';
 import { AdministratorComponent } from './components/administrador/administrator/administrator.component';
 import { VentasComponent } from './components/administrador/ventas/ventas.component';
@@ -32,18 +32,18 @@ const routes: Routes = [
 
 
   { path: 'admin', component: PanelAdministradorComponent },
-  { path: 'admin/Productos', component: ProductosComponent },
-  { path: 'admin/Clientes', component: AdministratorComponent },
-  { path: 'admin/Ventas', component: VentasComponent },
+  { path: 'admin/products', component: ProductosComponent },
+  { path: 'admin/customers', component: AdministratorComponent },
+  { path: 'admin/sales', component: VentasComponent },
   { path: 'admin/publications/:id', component: PublicationsListComponent },
 
   { path: 'dashboard', component: DashboardComponent },
-  { path: 'dashboard/allproducts', component: AllProductsComponent },
+  { path: 'dashboard/all-products', component: AllProductsComponent },
   { path: 'dashboard/helps', component: HelpsComponent },
-  { path: 'dashboard/productsSearch/:name', component: ProductInformationComponent },
+  { path: 'dashboard/products-search/:name', component: ProductInformationComponent },
   { path: 'dashboard/shopping/:id', component: ProductShoppingComponent },
-  { path: 'dashboard/userPurchases/:dni', component: UserPurchasesComponent },
-  { path: 'dashboard/userProfile/:dni', component: UserProfileComponent },
+  { path: 'dashboard/user-purchases/:dni', component: UserPurchasesComponent },
+  { path: 'dashboard/user-profile/:dni', component: UserProfileComponent },
   { path: 'dashboard/cart', component: CartComponent },
   { path: '**', redirectTo: 'dashboard', pathMatch: 'full' }
 
