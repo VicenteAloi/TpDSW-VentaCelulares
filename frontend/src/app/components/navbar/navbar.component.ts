@@ -21,6 +21,7 @@ export class NavbarComponent implements OnInit {
   dni: any;
   login: any;
   isCollapsed = true;
+  isCollapsed2 = true;
   productList: product[] = [];
   productString: string = '';
   search: any = '';
@@ -47,7 +48,6 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('token');
     localStorage.removeItem('user');
     this.cartService.clearCart();
-    console.log(location.pathname)
     if (location.pathname == '/dashboard') {
       location.reload();
     } else {

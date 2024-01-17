@@ -20,14 +20,7 @@ body {
 }
 
 
-.text {
-  color: rgb(141, 226, 177);
-  text-transform: uppercase;
-  margin-left: 5rem;
-  text-decoration: double;
-  min-width: 40%;
-  margin-top: 20%;
-}
+
 
 td img {
   max-height: 100px;
@@ -65,6 +58,11 @@ td p {
   font-size: 30px;
 }
 
-.content{
+.content {
   width: 500px;
+}
+
+.panel {
+  margin: 25px;
+  box-shadow: none !important;
 }

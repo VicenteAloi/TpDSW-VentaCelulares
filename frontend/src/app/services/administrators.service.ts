@@ -18,13 +18,12 @@ export class AdministratorsService {
     this.myApiUrl = 'api/Administrators'
   }
   postAdministrator(administratorEnter: user) {
-    //ACA MANDAMOS MEDIANTE UN POST A LA API
-    // return this.http.post('http://localhost:3001/api/Administrators', administratorEnter);
+
     return this.http.post(`${this.myAppUrl}${this.myApiUrl}`, administratorEnter);
   }
 
   retraiveAdministrator() {
-    // this.http.get('http://localhost:3001/api/Administrators')
+
     this.http.get(`${this.myAppUrl}${this.myApiUrl}`).subscribe(administrators => {
       this.administrators = administrators;
       this.administratorsSubject.next(this.administrators)
@@ -35,14 +34,14 @@ export class AdministratorsService {
 
   deleteAdministrator(administrator: user) {
     const dniAdministrator = administrator.dni;
-    //return this.http.delete(`http://localhost:3001/api/Administrators/${dniAdministrator}`);
+
     return this.http.delete(`${this.myAppUrl}${this.myApiUrl}/${dniAdministrator}`);
 
   }
 
   updateAdministrator(administratorModify: user) {
     const dniAdministrator = administratorModify.dni;
-    // return this.http.put(`http://localhost:3001/api/Administrators/${dniAdministrator}`, administratorModify)
+
     return this.http.put(`${this.myAppUrl}${this.myApiUrl}/${dniAdministrator}`, administratorModify)
   }
 }

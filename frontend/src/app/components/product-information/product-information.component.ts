@@ -1,6 +1,7 @@
 
 import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/app/environments/environments';
 import { product } from 'src/app/interfaces/product';
 import { ProductService } from 'src/app/services/product.service';
 
@@ -15,15 +16,14 @@ import { ProductService } from 'src/app/services/product.service';
 
 
 export class ProductInformationComponent {
-
+  private myApiUrl: string;
   productList: product[] = [];
   productString: any;
   search: any;
   constructor(private productService: ProductService, private router: Router, private activateRoute: ActivatedRoute) {
-
+    this.myApiUrl = environment.endpoint;
     this.activateRoute.params.subscribe((param) => {
       this.search = param;
-      console.log(this.search.name)
     });
 
     this.getProductList();
@@ -33,7 +33,7 @@ export class ProductInformationComponent {
     this.router.navigate([`dashboard/shopping/${item.id}`])
   }
   getUrl(image: string) {
-    return `http://localhost:3001/static/${image}`
+    return `${this.myApiUrl}static/${image}`
   }
 
   async getProductList() {

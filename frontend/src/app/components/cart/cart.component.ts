@@ -6,6 +6,7 @@ import { ToastrService } from 'ngx-toastr';
 import { Router } from '@angular/router';
 import { PaymentService } from 'src/app/services/payment.service';
 import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
+import { environment } from 'src/app/environments/environments';
 
 @Component({
   selector: 'app-cart',
@@ -13,6 +14,7 @@ import { BsModalService, BsModalRef } from 'ngx-bootstrap/modal';
   styleUrls: ['./cart.component.css']
 })
 export class CartComponent {
+  private myApiUrl: string;
   hideModal = false;
   modalRef?: BsModalRef;
   responsePayment: any;
@@ -21,7 +23,7 @@ export class CartComponent {
   cartSales: sales[] = [];
   user: any = localStorage.getItem('user')
   constructor(private modalService: BsModalService, private cartService: CartService, private sellService: SalesService, private alertService: ToastrService, private router: Router, private pay: PaymentService) {
-
+    this.myApiUrl = environment.endpoint;
   }
   ngOnInit() {
     this.cartService.products.subscribe((products) => {
@@ -61,7 +63,7 @@ export class CartComponent {
 
   doSell($event: any) {
     if ($event.status == "succeeded") {
-      this.modalRef?.hide(); //para que el modal se cierre solo
+      this.modalRef?.hide();
       if (this.cartSales.length > 0) {
         if (this.cartSales.length < this.productsCart.length) {
           this.alertService.info('Hay productos que no cumplen con el stock, por lo tanto no concretarán la compra').onAction
@@ -72,7 +74,7 @@ export class CartComponent {
             this.cartService.clearCart();
             this.alertService.success('Compra registrada con exito!')
           }),
-          error: (() => console.log('Ocurrio un error'))
+          // error: (() => console.log('Ocurrio un error'))
         });
       }
       else {
@@ -91,7 +93,7 @@ export class CartComponent {
   }
 
   getUrl(image: string) {
-    return `http://localhost:3001/static/${image}`
+    return `${this.myApiUrl}/static/${image}`
   }
 
 }

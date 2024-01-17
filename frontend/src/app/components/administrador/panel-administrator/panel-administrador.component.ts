@@ -9,6 +9,7 @@ import { ToastrService } from 'ngx-toastr';
 })
 export class PanelAdministradorComponent {
   admin: any;
+  component = 'admin';
   constructor(private router: Router, private toastr: ToastrService) {
     this.isAdmin()
   }

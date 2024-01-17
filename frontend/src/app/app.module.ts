@@ -24,7 +24,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatStepperModule } from '@angular/material/stepper';
 import { MatExpansionModule } from '@angular/material/expansion';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-import {MatButtonModule} from '@angular/material/button';
+import { MatButtonModule } from '@angular/material/button';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -57,11 +57,9 @@ import { ProducListComponent } from './components/administrador/productos/produc
 import { AdministratorFormComponent } from './components/administrador/administrator/administrator-form/administrator-form.component';
 import { AdministratorsListComponent } from './components/administrador/administrator/administrators-list/administrators-list.component';
 
-import { NavBar2Component } from './components/administrador/administrator/nav-bar2/nav-bar2.component';
 import { ModifyFormAdministratorComponent } from './components/administrador/administrator/modify-form-administrator/modify-form-administrator.component';
 
 import { NavBarComponent } from './components/administrador/nav-bar/nav-bar.component';
-import { Navbar2Component } from './components/administrador/productos/navbar2/navbar2.component';
 import { SalesListComponent } from './components/administrador/ventas/sales-list/sales-list.component';
 import { FooterAdminComponent } from './components/administrador/footerAdmin/footer.component';
 import { UserPurchasesComponent } from './components/user-purchases/user-purchases.component';
@@ -93,7 +91,6 @@ import { PaymentComponent } from './components/payment/payment.component';
     ProductsCarouselComponent,
     ProductShoppingComponent,
     SalesListComponent,
-    Navbar2Component,
     PanelAdministradorComponent,
     ProductosComponent,
     TabsComponent,
@@ -110,7 +107,6 @@ import { PaymentComponent } from './components/payment/payment.component';
     FooterComponent,
     NavBarComponent,
     FilterPipe,
-    NavBar2Component,
     NavbarComponent,
     UserPurchasesComponent,
     CartComponent,

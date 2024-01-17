@@ -68,11 +68,11 @@ export class FormularioRegistroComponent implements OnInit {
       },
       error: (error) => {
         alert('No se pudo registrar el producto')
-        console.log(error)
+        // console.log(error)
       }
     });
   }
-  
+
   onClosed(dismissedAlert: AlertComponent): void {
     this.alerts = this.alerts.filter(alert => alert !== dismissedAlert);
   }

@@ -6,6 +6,7 @@ import { user } from 'src/app/interfaces/user';
 import { ProductService } from 'src/app/services/product.service';
 import { UserService } from 'src/app/services/user.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { environment } from 'src/app/environments/environments';
 
 @Component({
   selector: 'app-dashboard',
@@ -19,13 +20,14 @@ export class DashboardComponent implements OnInit {
   usera: any;
   errorService: any;
 
+  private myApiUrl: string;
 
 
   constructor(private productService: ProductService,
     private modalService: BsModalService,
     private userService: UserService,
     private router: Router) {
-
+    this.myApiUrl = environment.endpoint;
   }
 
   ngOnInit(): void {
@@ -39,12 +41,11 @@ export class DashboardComponent implements OnInit {
     let list: product[] = []
     this.productService.getProducts().subscribe(data => {
       list = data;
-      console.log(list) // Muestra todos los productos
     });
     setTimeout(() => {
       for (let i = 0; i < list.length; i++) {
         if (list[i].stock > 0) {
-          this.listProducts.push(list[i]) //Agregar el producto con stock >0 al arreglo
+          this.listProducts.push(list[i])
         }
       }
     }, 500);
@@ -65,7 +66,7 @@ export class DashboardComponent implements OnInit {
   }
 
   getUrl(image: string) {
-    return `http://localhost:3001/static/${image}`
+    return `${this.myApiUrl}static/${image}`
   }
 
 
