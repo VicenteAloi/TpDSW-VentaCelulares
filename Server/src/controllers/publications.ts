@@ -21,11 +21,3 @@ export const getPublications = async (request: Request, response: Response) => {
     return response.status(400).send(error)
   }
 };
-
-export const newPublication = async (request: Request, response: Response) => {
-  const { idAdmin } = request.params; //recibimos la id del usuario por ruta(parametro)
-  const { body } = request; //recibimos el producto
-
-
-
-}

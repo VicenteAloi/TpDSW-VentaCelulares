@@ -7,12 +7,12 @@ import { deleteAdministrator, getAdministrators, getOneAdministrator } from "../
 const router = Router();
 
 
-router.get('/:dni', getOneAdministrator); //SEQUELIZE;
-router.delete('/:dni', deleteAdministrator); //SEQUELIZE;
-router.put('/:dni', updateCustomer); //SEQUELIZE
-router.post('/login', loginUser) // SEQUELIZE;
-router.get('/', getAdministrators) //SEQUELIZE;
-router.post('/', newUser) // SEQUELIZE;
+router.get('/:dni', getOneAdministrator);;
+router.delete('/:dni', deleteAdministrator);
+router.put('/:dni', updateCustomer);
+router.post('/login', loginUser);
+router.get('/', getAdministrators);
+router.post('/', newUser);
 
 
 export default router;

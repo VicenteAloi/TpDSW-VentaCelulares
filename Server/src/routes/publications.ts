@@ -1,12 +1,11 @@
 import { Router } from "express";
-import { getPublications, newPublication } from "../controllers/publications";
+import { getPublications } from "../controllers/publications";
 
 
 
 const router = Router();
 
-router.get('/:id', getPublications)//SEQUELIZE;
-router.post('/:id', newPublication)//NO HECHA;
+router.get('/:id', getPublications);
 
 
 

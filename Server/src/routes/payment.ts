@@ -3,7 +3,7 @@ import { checkout } from "../controllers/payment";
 
 const router = Router();
 
-router.post('/checkout',checkout);
+router.post('/checkout', checkout);
 
 
-export default router;//
+export default router;

@@ -3,7 +3,7 @@ import { getOneSales, getSales, postSell } from '../controllers/sales';
 
 const router = Router();
 
-router.get('/', getSales)//SEQUELIZE;
-router.get('/:dniCustomer', getOneSales)//SEQUELIZE;
-router.post('/', postSell)//SEQUELIZE;
+router.get('/', getSales);
+router.get('/:dniCustomer', getOneSales);
+router.post('/', postSell);
 export default router;

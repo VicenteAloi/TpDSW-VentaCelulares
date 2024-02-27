@@ -92,8 +92,8 @@ export class CartComponent {
     this.modalRef = this.modalService.show(template);
   }
 
-  getUrl(image: string) {
-    return `${this.myApiUrl}/static/${image}`
+  getUrl(image: string | undefined) {
+    return `${this.myApiUrl}static/${image}`
   }
 
 }
