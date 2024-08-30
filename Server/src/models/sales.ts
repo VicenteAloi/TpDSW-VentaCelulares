@@ -20,7 +20,7 @@ export const Sales = sequelize.define('sales', {
   },
   idShipping: {
     type: DataTypes.INTEGER,
-    allowNull: true
+    allowNull: true,
   }
 
 })

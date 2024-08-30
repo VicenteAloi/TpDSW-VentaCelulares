@@ -1,6 +1,14 @@
+.container{
+  display:grid;
+  text-align: center;
+  width: 80%;
+}
+
 .table {
   text-align: center;
+  width: 100%;
 }
+
 
 .alert {
   width: 50%;
@@ -13,8 +21,9 @@
   text-align: center;
   align-content: center;
   height: 50px;
-  width: 200px;
+  width: 200px; 
   margin-left: 40%;
+  margin-bottom: 1rem;
 }
 
 .button {

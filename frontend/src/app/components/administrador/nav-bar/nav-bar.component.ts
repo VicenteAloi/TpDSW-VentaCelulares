@@ -1,16 +1,17 @@
 import { Component, TemplateRef } from '@angular/core';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { Router } from '@angular/router';
-import { Parser } from '@angular/compiler';
+import { Input } from '@angular/core';
 
 @Component({
   selector: 'app-nav-bar',
   templateUrl: './nav-bar.component.html',
   styleUrls: ['./nav-bar.component.scss']
 })
-export class NavBarComponent {
 
-    administrator: any
+export class NavBarComponent {
+  @Input() component: any;
+  administrator: any
 
   constructor(private modalService: BsModalService,
     private router: Router) {
@@ -27,11 +28,12 @@ export class NavBarComponent {
 
   logOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('user');
     this.modalRef?.hide()
-    this.router.navigate(['/login'])
+    this.router.navigate(['/dashboard'])
   }
 
-  openPublications(){
+  openPublications() {
     this.router.navigate([`admin/publications/${this.administrator.id}`])
   }
 }

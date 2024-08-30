@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
-import { AdministratorsService } from '../administrators.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 import { ToastrService } from 'ngx-toastr';
 
 @Component({
@@ -9,12 +9,12 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./administrator-form.component.scss']
 })
 export class AdministratorFormComponent {
-
+  @Output() hideModal = new EventEmitter<boolean>();
   administratorForm = new FormGroup({
-    dni: new FormControl(0, Validators.required),
+    dni: new FormControl("", Validators.required),
     name: new FormControl("", Validators.required),
     surname: new FormControl("", Validators.required),
-    email: new FormControl("", [Validators.required]),
+    email: new FormControl("", [Validators.required, Validators.email]),
     password: new FormControl("", Validators.required),
   });
   constructor(private adminService: AdministratorsService, private toastr: ToastrService) { }
@@ -28,14 +28,20 @@ export class AdministratorFormComponent {
       'password': this.administratorForm.controls.password.value,
       'isAdmin': true
     }
-    console.log(administrator);
     this.adminService.postAdministrator(administrator).subscribe({
-      complete: () => { 
+      complete: () => {
         this.adminService.retraiveAdministrator();
-        this.toastr.success('Administrador cargado correctamente')
-       },
-      error: (error) => this.toastr.error('Administrador duplicado, DNI o EMAIL duplicados')
+        this.toastr.success('Administrador cargado correctamente');
+        this.administratorForm = new FormGroup({
+          dni: new FormControl("", Validators.required),
+          name: new FormControl("", Validators.required),
+          surname: new FormControl("", Validators.required),
+          email: new FormControl("", [Validators.required, Validators.email]),
+          password: new FormControl("", Validators.required),
+        });
+      },
+      error: () => this.toastr.error('DNI o EMAIL ya existentes')
     });
-
+    this.hideModal.emit(true);
   }
 }

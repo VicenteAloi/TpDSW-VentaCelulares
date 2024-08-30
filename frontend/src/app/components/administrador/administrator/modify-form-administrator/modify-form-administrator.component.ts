@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { AdministratorsService } from '../administrators.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 import { user } from 'src/app/interfaces/user';
 import { ToastrService } from 'ngx-toastr';
+
 
 @Component({
   selector: 'app-modify-form-administrator',
@@ -9,6 +10,8 @@ import { ToastrService } from 'ngx-toastr';
   styleUrls: ['./modify-form-administrator.component.scss']
 })
 export class ModifyFormAdministratorComponent {
+  hide = true;
+  @Output() hideModal = new EventEmitter<boolean>();
   @Input() administratorReceived: any;
   constructor(private adminService: AdministratorsService, private toaster: ToastrService) { }
 
@@ -28,7 +31,8 @@ export class ModifyFormAdministratorComponent {
         this.adminService.retraiveAdministrator();
         this.toaster.success('Administrador actulizado!');
       },
-      error: (err) => alert('No se realizo correctamente la modificacion')
+      error: (err) => this.toaster.error('No se realizo correctamente la modificacion')
     });
+    this.hideModal.emit(true);
   }
 }

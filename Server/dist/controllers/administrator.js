@@ -8,16 +8,11 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOneAdministrator = exports.deleteAdministrator = exports.updateAdministrator = exports.getAdministrators = void 0;
-const bcrypt_1 = __importDefault(require("bcrypt"));
-const connection_1 = __importDefault(require("../db/connection"));
+exports.getOneAdministrator = exports.deleteAdministrator = exports.getAdministrators = void 0;
 const user_1 = require("../models/user");
+const sales_1 = require("../models/sales");
 const getAdministrators = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
-    //let queryTable = "SELECT * FROM users WHERE users.isAdmin = true";
     let administratorsList = [];
     try {
         administratorsList = yield user_1.User.findAll({ where: { isAdmin: true } });
@@ -32,67 +27,43 @@ const getAdministrators = (request, response) => __awaiter(void 0, void 0, void 
     }
 });
 exports.getAdministrators = getAdministrators;
-const updateAdministrator = (request, response) => {
-    let queryControl = "SELECT * FROM users WHERE  dni = ? and isAdmin = true";
-    connection_1.default.query({
-        query: queryControl,
-        values: [request.params.dni]
-    }).then((value) => {
-        if (value[0].length === 1) {
-            //ESTO SE EJECUTA SI EL ADMINISTRADOR SE ENCONTRÓ VALUE[0] ESTA LA TUPLA ENCONTRADA EN LA BD
-            //AHORA DEBEMOS SABER SI EL EMAIL NO ESTA REPETIDO EN OTRO ADMINISTRADOR
-            let queryEmail = "SELECT email FROM users WHERE email like ? AND dni <> ? "; //TRAIGO TODOS LOS EMAIL IGUALES AL NUEVO PERO DISTINTO AL ADMIN(YA QUE PUEDE NO ACTUALIZARLO)
-            connection_1.default.query({
-                query: queryEmail,
-                values: [request.body.email, request.params.dni]
-            }).then((resp) => {
-                if (resp[0].length == 0) {
-                    let queryForUpdate = "UPDATE users SET email = ?, password = ? WHERE dni = ?";
-                    let hashedPassword = '';
-                    bcrypt_1.default.hash(request.body.password, 10).then((value) => hashedPassword = value).finally(() => {
-                        connection_1.default.query({
-                            query: queryForUpdate,
-                            values: [request.body.email, hashedPassword, request.params.dni]
-                        }).then(() => {
-                            response.send({ msg: 'Administrador actiualizado' });
-                        });
-                    }); //hasheo 
-                }
-                else {
-                    response.status(404).send({ msg: 'Email duplicado' });
-                }
-            });
-        }
-        else {
-            response.status(404).send({ msg: 'administrador no encontrado' });
+const deleteAdministrator = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const { dni } = request.params;
+    const admin = yield user_1.User.findOne({
+        where: {
+            dni: dni
         }
     });
-};
-exports.updateAdministrator = updateAdministrator;
-const deleteAdministrator = (request, response) => {
-    let querySearch = "DELETE FROM users WHERE dni = ? and isAdmin = true";
-    connection_1.default.query({
-        query: querySearch,
-        values: [request.params.dni]
-    }).then((resp) => {
-        if (resp[1]) {
-            response.status(200).send({ msg: 'Administrador Eliminado' }); //HAY QUE VER COMO HACER PARA RETORNAR 404, AUNQUE SE SUPONE QUE SIEMPRE VA A ESTAR LA TUPLA, YA QUE LA ELIMINA DE UN LISTADO
+    const sales = yield sales_1.Sales.destroy({
+        where: { idCustomer: admin.id }
+    });
+    const admindeleted = yield user_1.User.destroy({
+        where: {
+            dni: dni,
+            isAdmin: true
         }
     });
-};
+    if (admindeleted) {
+        response.status(200).send({ msg: 'Administrador Eliminado' }); //HAY QUE VER COMO HACER PARA RETORNAR 404, AUNQUE SE SUPONE QUE SIEMPRE VA A ESTAR LA TUPLA, YA QUE LA ELIMINA DE UN LISTADO
+    }
+    else {
+        response.status(400).send({ msg: 'Ocurrio un Error' });
+    }
+});
 exports.deleteAdministrator = deleteAdministrator;
-const getOneAdministrator = (request, response) => {
-    let querySearch = "SELECT * FROM users WHERE dni = ? and isAdmin = true";
-    connection_1.default.query({
-        query: querySearch,
-        values: [request.params.dni]
-    }).then((value) => {
-        if (value[0].length === 1) {
-            response.status(200).json(value[0][0]);
-        }
-        else {
-            response.status(404).send({ msg: 'No encontrado' });
+const getOneAdministrator = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
+    const { dni } = request.params;
+    const admin = yield user_1.User.findOne({
+        where: {
+            dni: dni,
+            isAdmin: true
         }
     });
-};
+    if (admin) {
+        response.status(200).json(admin);
+    }
+    else {
+        response.status(404).send({ msg: 'No encontrado' });
+    }
+});
 exports.getOneAdministrator = getOneAdministrator;

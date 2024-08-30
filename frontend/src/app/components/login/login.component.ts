@@ -1,8 +1,7 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
-import { Route, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { user } from 'src/app/interfaces/user';
 import { ErrorService } from 'src/app/services/error.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -30,14 +29,14 @@ export class LoginComponent {
   }
 
   login() {
-    //Validar que el usuario ingrese datos
+
     if (this.email == '' || this.password == '') {
       this.toastr.error('Todos los Campos son Obligatorios', 'Error');
       return;
     }
 
 
-    //Crear el body
+
     let user: any = {
       password: this.password,
       email: this.email,

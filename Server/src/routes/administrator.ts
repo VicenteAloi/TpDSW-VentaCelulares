@@ -1,19 +1,18 @@
 import { Router } from "express";
-import {  updateCustomer } from "../controllers/customers";
-import {  loginUser, newUser } from "../controllers/user";
-import validateToken from "./validate-token";
+import { updateCustomer } from "../controllers/customers";
+import { loginUser, newUser } from "../controllers/user";
 import { deleteAdministrator, getAdministrators, getOneAdministrator } from "../controllers/administrator";
 
 
 const router = Router();
 
 
-router.get('/:dni', getOneAdministrator);
-router.delete('/:dni', deleteAdministrator);
-router.put('/:dni', updateCustomer)
-router.post('/login', validateToken, loginUser);
-router.get('/', getAdministrators);
-router.post('/',newUser);
+router.get('/:dni', getOneAdministrator); //SEQUELIZE;
+router.delete('/:dni', deleteAdministrator); //SEQUELIZE;
+router.put('/:dni', updateCustomer); //SEQUELIZE
+router.post('/login', loginUser) // SEQUELIZE;
+router.get('/', getAdministrators) //SEQUELIZE;
+router.post('/', newUser) // SEQUELIZE;
 
 
 export default router;

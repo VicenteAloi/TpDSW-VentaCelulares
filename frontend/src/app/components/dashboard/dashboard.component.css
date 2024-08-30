@@ -1,24 +1,10 @@
-.fondo {
-  background-image: url(https://wallpapercave.com/wp/wp6994803.jpg);
-  background-size: cover;
-  background-attachment: scroll;
-  
-}
-
-h2 {
-  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
-  font-style: oblique;
-  color: rgb(0, 0, 0);
-
-}
-
-
 .card {
-  width: 18rem;
-  border: 2px solid white;
+  border: 1px solid rgb(101, 101, 101);
   display: inline-block;
-  background-color: rgba(240, 237, 233, 0.592);
-  margin: 0px 10px 15px 0px;
+  background-color: rgba(240, 239, 239, 0.592);
+  margin: 0px 10px 15px 15px;
+  width: 18rem;
+  height: 28rem;
 }
 
 .card img {
@@ -35,4 +21,25 @@ h2 {
 
 .modal-body-right img {
   max-width: 150px;
+}
+
+.icono-wrap {
+  background-color: rgba(209, 210, 212, 0.291);
+}
+
+
+@media (max-width:768px) {
+
+
+  .servicio-fila {
+    width: 100% !important;
+    text-align: center !important;
+  }
+}
+
+@media (max-width: 576px) {
+  .icono-wrap {
+    flex-wrap: wrap;
+    justify-content: center !important;
+  }
 }

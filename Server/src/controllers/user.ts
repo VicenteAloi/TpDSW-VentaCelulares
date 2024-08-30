@@ -2,8 +2,6 @@ import { Request, Response } from 'express';
 import bcrypt from 'bcrypt';
 import { User } from '../models/user';
 import jwt from 'jsonwebtoken'
-import { json } from 'sequelize';
-import connection from '../db/connection'
 
 export const newUser = async (req: Request, res: Response) => {
   console.log('new user entrando');
@@ -96,23 +94,7 @@ export const loginUser = async (req: Request, res: Response) => {
 
 }
 
-// export const getAdmins = async (req: Request, res: Response) => {
-//   connection.query('Select * from users where users.isAdmin is true')
-//     .then((users) => {
-//       if (users[0].length > 0) {
-//         res.status(200).json(users[0])
-//       }
-//     }).catch(() => {
-//       res.status(400).send({
-//         msg: 'No hay Administradores Cargados'
-//       })
-//     })
-// }
 
-export const getCustomer = async (req: Request, res: Response) => {
-  const { email } = req.params;
-  const oneUser = await User.findOne({ where: { email: email } });
-  res.json(oneUser);
-}
+
 
 

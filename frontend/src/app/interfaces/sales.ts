@@ -1,6 +1,6 @@
 export interface sales {
-  idCustomer: number, //PK
-  idProduct: number, //PK
+  idCustomer: number,
+  idProduct: number,
   quantity: number,
-  idShipping: number| null, //FK, ALLOW NULL
+  idShipping: number | null,
 }

@@ -8,11 +8,16 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getOneProduct = exports.deleteProduct = exports.updateProduct = exports.newProduct = exports.getProducts = void 0;
+exports.getProductsByName = exports.getOneProduct = exports.deleteProduct = exports.updateProduct = exports.newProduct = exports.getProducts = void 0;
 const product_1 = require("../models/product");
 const publication_1 = require("../models/publication");
 const sales_1 = require("../models/sales");
+const connection_1 = __importDefault(require("../db/connection"));
+const sequelize_1 = require("sequelize");
 const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const listProducts = yield product_1.Product.findAll();
     res.json(listProducts);
@@ -20,14 +25,15 @@ const getProducts = (req, res) => __awaiter(void 0, void 0, void 0, function* ()
 exports.getProducts = getProducts;
 const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { body, file } = request;
-    console.log('body:', body);
-    console.log('file:', file);
-    //AHORA TRANSFORMAMOS LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT (Con postman anda pero con el Front no ( consulta)) --> Lo que me da a entender que la API esta bien pero del Front mando mal la info
+    const idAdmin = parseInt(request.params.idAdmin);
+    // console.log('body:', body);
+    // console.log('file:', file);
+    //AHORA validamos LA IMAGEN QUE VIENE DE TIPO FILE DESDE EL FRONT 
     if (file != undefined) {
         const url = file.filename;
         //MANDAMOS A LA BD TODO LISTO
         try {
-            yield product_1.Product.create({
+            const product = yield product_1.Product.create({
                 model: body.model,
                 brand: body.brand,
                 description: body.description,
@@ -35,7 +41,11 @@ const newProduct = (request, response) => __awaiter(void 0, void 0, void 0, func
                 price: Number(body.price),
                 stock: Number(body.stock)
             });
-            return response.status(200).send({ msg: 'Producto cargado correctamente' });
+            const publication = yield publication_1.Publication.create({
+                idProduct: product.dataValues.id,
+                idAdministrator: idAdmin
+            });
+            return response.status(200).send({ msg: "Producto Creado Correctamente", body: product, publication });
         }
         catch (error) {
             return response.status(400).json({ msg: 'Ocurrio un Error', error });
@@ -62,10 +72,6 @@ const updateProduct = (request, response) => __awaiter(void 0, void 0, void 0, f
 exports.updateProduct = updateProduct;
 const deleteProduct = (request, response) => __awaiter(void 0, void 0, void 0, function* () {
     const { id } = request.params;
-    // let querySalesProduct = "DELETE FROM sales WHERE idProduct = ?";
-    // let queryPublicationsProduct = "DELETE FROM publications WHERE idProduct = ?";
-    // let querySearch = "DELETE FROM products WHERE id = ?";
-    //ver FK en sales y publications antes de eliminar el producto
     try {
         try {
             yield sales_1.Sales.destroy({ where: { idProduct: id } });
@@ -106,3 +112,30 @@ const getOneProduct = (request, response) => __awaiter(void 0, void 0, void 0, f
     }
 });
 exports.getOneProduct = getOneProduct;
+/*export const getProductsByName = async (req: Request, res: Response) => {
+  const { name } = req.params;
+  const productsByName = await Product.findAll({
+    where: {
+      brand:name
+    }
+  });
+  if (productsByName) {
+    return res.status(200).json(productsByName);
+  } else {
+    return res.status(400).json({ msg: 'No se ha podido realizar la busqueda' });
+  }
+}*/
+const getProductsByName = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { name } = req.params;
+    const productsByName = yield connection_1.default.query('SELECT * FROM products WHERE brand like :search_brand ', {
+        replacements: { search_brand: `%${name}%` },
+        type: sequelize_1.QueryTypes.SELECT
+    });
+    if (productsByName) {
+        return res.status(200).json(productsByName);
+    }
+    else {
+        return res.status(400).json({ msg: 'No se ha podido realizar la busqueda' });
+    }
+});
+exports.getProductsByName = getProductsByName;

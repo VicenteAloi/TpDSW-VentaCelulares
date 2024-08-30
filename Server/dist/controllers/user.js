@@ -12,7 +12,7 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getCustomer = exports.loginUser = exports.newUser = void 0;
+exports.loginUser = exports.newUser = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_1 = require("../models/user");
 const jsonwebtoken_1 = __importDefault(require("jsonwebtoken"));
@@ -94,21 +94,3 @@ const loginUser = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     res.json(obj);
 });
 exports.loginUser = loginUser;
-// export const getAdmins = async (req: Request, res: Response) => {
-//   connection.query('Select * from users where users.isAdmin is true')
-//     .then((users) => {
-//       if (users[0].length > 0) {
-//         res.status(200).json(users[0])
-//       }
-//     }).catch(() => {
-//       res.status(400).send({
-//         msg: 'No hay Administradores Cargados'
-//       })
-//     })
-// }
-const getCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
-    const { email } = req.params;
-    const oneUser = yield user_1.User.findOne({ where: { email: email } });
-    res.json(oneUser);
-});
-exports.getCustomer = getCustomer;

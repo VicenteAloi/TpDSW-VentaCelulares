@@ -13,8 +13,18 @@ import { FilterPipe } from './components/administrador/ventas/pipes/filter.pipe'
 import { TabsModule } from 'ngx-bootstrap/tabs';
 import { AlertModule } from 'ngx-bootstrap/alert';
 import { ReactiveFormsModule } from '@angular/forms';
-
-
+import { MatBadgeModule } from '@angular/material/badge';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatIconModule } from '@angular/material/icon';
+import { MatDividerModule } from '@angular/material/divider';
+import { MatSortModule } from '@angular/material/sort';
+import { MatTableModule } from '@angular/material/table';
+import { MatInputModule } from '@angular/material/input';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatStepperModule } from '@angular/material/stepper';
+import { MatExpansionModule } from '@angular/material/expansion';
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatButtonModule } from '@angular/material/button';
 
 // Componentes 
 import { LoginComponent } from './components/login/login.component';
@@ -37,27 +47,28 @@ import { UserProfileComponent } from './components/user-profile/user-profile.com
 import { AdministratorComponent } from './components/administrador/administrator/administrator.component';
 
 
-import { PanelAdministradorComponent } from './components/administrador/panel-administrador/panel-administrador.component';
+import { PanelAdministradorComponent } from './components/administrador/panel-administrator/panel-administrador.component';
 import { ProductosComponent } from './components/administrador/productos/productos.component';
 import { TabsComponent } from './components/administrador/tabs/tabs.component';
 import { VentasComponent } from './components/administrador/ventas/ventas.component';
-import { FormularioModificarComponent } from './components/administrador/productos/formulario-modificar/formulario-modificar.component';
-import { FormularioRegistroComponent } from './components/administrador/productos/formulario-registro/formulario-registro.component';
+import { FormularioModificarComponent } from './components/administrador/productos/form-modify/formulario-modificar.component';
+import { FormularioRegistroComponent } from './components/administrador/productos/form-register/formulario-registro.component';
 import { ProducListComponent } from './components/administrador/productos/produc-list/produc-list.component';
 import { AdministratorFormComponent } from './components/administrador/administrator/administrator-form/administrator-form.component';
 import { AdministratorsListComponent } from './components/administrador/administrator/administrators-list/administrators-list.component';
 
-import { NavBar2Component } from './components/administrador/administrator/nav-bar2/nav-bar2.component';
 import { ModifyFormAdministratorComponent } from './components/administrador/administrator/modify-form-administrator/modify-form-administrator.component';
 
 import { NavBarComponent } from './components/administrador/nav-bar/nav-bar.component';
-import { Navbar2Component } from './components/administrador/productos/navbar2/navbar2.component';
 import { SalesListComponent } from './components/administrador/ventas/sales-list/sales-list.component';
 import { FooterAdminComponent } from './components/administrador/footerAdmin/footer.component';
 import { UserPurchasesComponent } from './components/user-purchases/user-purchases.component';
 import { CartComponent } from './components/cart/cart.component';
 import { PublicationsListComponent } from './components/administrador/publications-list/publications-list.component';
 import { CollapseModule } from 'ngx-bootstrap/collapse';
+import { AllProductsComponent } from './components/all-products/all-products.component';
+import { PaymentComponent } from './components/payment/payment.component';
+
 
 
 
@@ -80,7 +91,6 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     ProductsCarouselComponent,
     ProductShoppingComponent,
     SalesListComponent,
-    Navbar2Component,
     PanelAdministradorComponent,
     ProductosComponent,
     TabsComponent,
@@ -97,11 +107,12 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
     FooterComponent,
     NavBarComponent,
     FilterPipe,
-    NavBar2Component,
     NavbarComponent,
     UserPurchasesComponent,
     CartComponent,
     PublicationsListComponent,
+    AllProductsComponent,
+    PaymentComponent
 
   ],
   imports: [
@@ -118,7 +129,26 @@ import { CollapseModule } from 'ngx-bootstrap/collapse';
       timeOut: 3000,
       positionClass: 'toast-bottom-right',
       preventDuplicates: true,
-    }), CarouselModule.forRoot(), ModalModule.forRoot(), BsDropdownModule.forRoot(), RatingModule.forRoot(), CollapseModule.forRoot() // ToastrModule added
+    }),
+    CarouselModule.forRoot(),
+    ModalModule.forRoot(),
+    RatingModule.forRoot(),
+    CollapseModule.forRoot(),
+    BrowserAnimationsModule,
+    BsDropdownModule.forRoot(), // ToastrModule added
+    MatBadgeModule,
+    MatMenuModule,
+    MatIconModule,
+    MatDividerModule,
+    MatSortModule,
+    MatTableModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatStepperModule,
+    MatExpansionModule,
+    MatProgressBarModule,
+    MatButtonModule
+
   ],
   providers: [
     { provide: HTTP_INTERCEPTORS, useClass: AddTokenInterceptor, multi: true }],

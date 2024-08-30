@@ -1,6 +1,6 @@
 export interface shipping {
-  id: number, //PK, Autoincremental
+  id: number,
   costForKm: number,
   costShipping: number,
-  postalCode: string // FK, NOT NULL
+  postalCode: string
 }

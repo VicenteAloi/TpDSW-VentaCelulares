@@ -2,8 +2,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { ToastrService } from 'ngx-toastr';
-import { combineLatest } from 'rxjs';
-import { user } from 'src/app/interfaces/user';
+
 import { ErrorService } from 'src/app/services/error.service';
 import { UserService } from 'src/app/services/user.service';
 
@@ -30,19 +29,18 @@ export class SignInComponent {
   }
 
   addUser() {
-    //Validar que los campos no sean vacio
+    console.log(this.password, this.confirmPassword, this.email)
     if (this.password == '' || this.confirmPassword == '' || this.email == '') {
       this.toastr.error('Todos los Campos son Obligatorios', 'Error');
       return;
     }
 
-    //Validar si las password sean iguales
     if (this.password != this.confirmPassword) {
       this.toastr.error('Las Password Ingresadas son Distintas', 'Error');
       return;
     }
 
-    //Crear el usuario
+
     const user: any = {
       dni: this.dni,
       email: this.email,

@@ -6,6 +6,7 @@ import routesCustomers from '../routes/customers';
 import routesAdministrator from '../routes/administrator';
 import routesSales from '../routes/sales';
 import routesPublications from '../routes/publications';
+import routesPayment from '../routes/payment';
 import { Product } from './product';
 import { User } from './user';
 import { Domicile } from './domicile';
@@ -38,7 +39,8 @@ class Server {
     this.app.use('/api/customers', routesCustomers);
     this.app.use('/api/Administrators', routesAdministrator);
     this.app.use('/api/sales', routesSales);
-    this.app.use('/api/publications/:idCustomer',routesPublications);
+    this.app.use('/api/publications', routesPublications);
+    this.app.use('/api/payment', routesPayment);
   }
 
   midlewares() {
@@ -46,7 +48,7 @@ class Server {
     this.app.use(express.json());
     this.app.use(cors());
     const path = require('path')
-    this.app.use('/static', express.static(path.join(__dirname,'../../../frontend/src/assets/Products')))
+    this.app.use('/static', express.static(path.join(__dirname, '../../../frontend/src/assets/Products')))
   }
 
   async dbConnect() {

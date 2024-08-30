@@ -20,6 +20,7 @@ const customers_1 = __importDefault(require("../routes/customers"));
 const administrator_1 = __importDefault(require("../routes/administrator"));
 const sales_1 = __importDefault(require("../routes/sales"));
 const publications_1 = __importDefault(require("../routes/publications"));
+const payment_1 = __importDefault(require("../routes/payment"));
 const product_2 = require("./product");
 const user_2 = require("./user");
 const domicile_1 = require("./domicile");
@@ -46,7 +47,8 @@ class Server {
         this.app.use('/api/customers', customers_1.default);
         this.app.use('/api/Administrators', administrator_1.default);
         this.app.use('/api/sales', sales_1.default);
-        this.app.use('/api/publications/:idCustomer', publications_1.default);
+        this.app.use('/api/publications', publications_1.default);
+        this.app.use('/api/payment', payment_1.default);
     }
     midlewares() {
         // Parseo Body

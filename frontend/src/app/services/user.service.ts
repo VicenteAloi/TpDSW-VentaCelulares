@@ -33,16 +33,4 @@ export class UserService {
   login(user: user): Observable<string> {
     return this.http.post<string>(`${this.myAppUrl}${this.myApiUrl}/login`, user);
   }
-
-  getAdmins() {
-    return this.http.get<user[]>(`${this.myAppUrl}${this.myApiUrl}/admin`);
-  }
-
-  getUser(email: string): Observable<any> {
-    return this.http.get<user>(`${this.myAppUrl}${this.myApiUrl}/login/${email}`);
-  }
-
-  getUsers() {
-    return this.http.get<user[]>(`${this.myAppUrl}${this.myApiUrl}/login`);
-  }
 }

@@ -1,5 +1,5 @@
 import { Component, TemplateRef } from '@angular/core';
-import { AdministratorsService } from '../administrators.service';
+import { AdministratorsService } from '../../../../services/administrators.service';
 import { BsModalRef, BsModalService } from 'ngx-bootstrap/modal';
 import { user } from 'src/app/interfaces/user';
 
@@ -22,13 +22,21 @@ export class AdministratorsListComponent {
     this.adminService.retraiveAdministrator().subscribe(respuesta => this.administratorResgisted = respuesta);
 
   }
+  openModal2(template: TemplateRef<any>) {
+    this.modalRef = this.modalService.show(template);
+  }
 
   deleteAdministrator(indice: number) {
     const administrator = this.administratorResgisted[indice];
+
+
     this.adminService.deleteAdministrator(administrator).subscribe({
       complete: () => this.adminService.retraiveAdministrator(),
-      error: (error) => console.log(error)
+      // error: (error) => console.log(error)
     });
+
+    this.modalRef?.hide()
+
   };
 
   modalRef?: BsModalRef;

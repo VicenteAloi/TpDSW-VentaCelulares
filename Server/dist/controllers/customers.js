@@ -12,24 +12,23 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.getSalesUser = exports.getSalesUsers = exports.deleteCustomer = exports.updateCustomer = exports.getCustomers = void 0;
+exports.getCustomer = exports.getSalesUser = exports.deleteCustomer = exports.updateCustomer = exports.getCustomers = void 0;
 const bcrypt_1 = __importDefault(require("bcrypt"));
 const user_1 = require("../models/user");
 const connection_1 = __importDefault(require("../db/connection"));
-const sales_1 = require("../models/sales");
-const getCustomers = (request, response) => {
-    let queryTable = "SELECT * FROM users WHERE isAdmin = false";
-    let customerList = [];
-    connection_1.default.query(queryTable).then((values) => {
-        if (values[0].length > 0) {
-            customerList = values[0];
-            response.status(200).json(customerList);
-        }
-        else {
-            response.status(404).send({ msg: 'No hay clientes cargados' });
+const getCustomers = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const customerList = yield user_1.User.findAll({
+        where: {
+            isAdmin: false
         }
     });
-};
+    if (customerList.length > 0) {
+        res.status(200).json(customerList);
+    }
+    else {
+        res.status(404).send({ msg: 'No hay clientes cargados' });
+    }
+});
 exports.getCustomers = getCustomers;
 const updateCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
     const { email, password } = req.body;
@@ -85,27 +84,19 @@ const updateCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function*
     ;
 });
 exports.updateCustomer = updateCustomer;
-const deleteCustomer = (request, response) => {
-    let querySearch = "DELETE FROM users WHERE dni = ? and isAdmin = false";
-    connection_1.default.query({
-        query: querySearch,
-        values: [request.params.dni]
-    }).then((resp) => {
-        if (resp[1]) {
-            response.status(200).send({ msg: 'Cliente Eliminado' }); //HAY QUE VER COMO HACER PARA RETORNAR 404, AUNQUE SE SUPONE QUE SIEMPRE VA A ESTAR LA TUPLA, YA QUE LA ELIMINA DE UN LISTADO
+const deleteCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { dni } = req.params;
+    const customer = yield user_1.User.destroy({
+        where: {
+            dni: dni,
+            isAdmin: false
         }
     });
-};
+    if (customer) {
+        res.status(200).send({ msg: 'Cliente Eliminado' }); //HAY QUE VER COMO HACER PARA RETORNAR 404, AUNQUE SE SUPONE QUE SIEMPRE VA A ESTAR LA TUPLA, YA QUE LA ELIMINA DE UN LISTADO
+    }
+});
 exports.deleteCustomer = deleteCustomer;
-const getSalesUsers = (req, res) => {
-    const listOfSales = sales_1.Sales.findAll();
-    res.status(200).json({
-        message: 'Todo Ok',
-        body: listOfSales
-    });
-    return (listOfSales);
-};
-exports.getSalesUsers = getSalesUsers;
 const getSalesUser = (req, res) => {
     let querySearch = "SELECT * FROM sales INNER JOIN products ON products.id = sales.idProduct WHERE idCustomer = ?;";
     let salesList;
@@ -123,3 +114,9 @@ const getSalesUser = (req, res) => {
     });
 };
 exports.getSalesUser = getSalesUser;
+const getCustomer = (req, res) => __awaiter(void 0, void 0, void 0, function* () {
+    const { email } = req.params;
+    const oneUser = yield user_1.User.findOne({ where: { email: email } });
+    res.json(oneUser);
+});
+exports.getCustomer = getCustomer;
